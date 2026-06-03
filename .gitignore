@@ -24,3 +24,9 @@ pnpm-debug.log*
 .agents/
 skills-lock.json
 claude-skills-export.zip
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
