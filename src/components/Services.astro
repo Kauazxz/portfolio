@@ -1,0 +1,83 @@
+---
+import Section from "./Section.astro";
+import SectionHeader from "./SectionHeader.astro";
+import Icon from "./Icon.astro";
+
+const services = [
+  {
+    icon: "code" as const,
+    color: "text-sky-400",
+    title: "Desenvolvimento Web",
+    short: "Sites e sistemas rápidos, seguros e fáceis de manter.",
+    body: "Sites institucionais, landing pages e aplicações web construídas com stack moderna. Foco em performance, SEO e código que aceita crescer junto com o produto.",
+  },
+  {
+    icon: "layout" as const,
+    color: "text-fuchsia-400",
+    title: "Sistemas Administrativos",
+    short: "Painéis sob medida pra centralizar a operação.",
+    body: "Dashboards, CRUDs, fluxos de aprovação e gestão de usuários. Substituo planilhas e processos manuais por sistemas web que organizam o dia a dia da equipe.",
+  },
+  {
+    icon: "smartphone" as const,
+    color: "text-emerald-400",
+    title: "Aplicativos Mobile",
+    short: "Apps no mesmo padrão visual do seu sistema web.",
+    body: "Aplicativos focados em produtividade e gestão. Interface consistente entre web e mobile, integração com APIs existentes e foco em uso real, não em demo.",
+  },
+  {
+    icon: "palette" as const,
+    color: "text-accent",
+    title: "UI / UX Design",
+    short: "Interface que reduz cliques e torna o produto óbvio.",
+    body: "Pesquisa, prototipagem em Figma, design system e acompanhamento até o produto final. Design pensado pra ser desenvolvido — não pra ficar bonito no Behance.",
+  },
+  {
+    icon: "chart" as const,
+    color: "text-amber-400",
+    title: "Dashboards & SaaS",
+    short: "Visualização de dados clara e fluxos que escalam.",
+    body: "Dashboards com gráficos, indicadores e relatórios. Estrutura preparada pra crescer: multi-tenant, controle de acesso, integrações com APIs e webhooks.",
+  },
+  {
+    icon: "zap" as const,
+    color: "text-orange-400",
+    title: "Automação de Processos",
+    short: "Tira do humano o que o sistema pode fazer melhor.",
+    body: "Validação de documentos, fluxos de aprovação, notificações e integrações entre ferramentas. Quando o processo manual repete demais, viro código.",
+  },
+];
+---
+
+<Section id="servicos">
+  <SectionHeader
+    eyebrow="O que eu faço"
+    title="Seis áreas, um padrão de entrega."
+    lead="Cada projeto pode combinar várias dessas frentes. A vantagem de quem cobre tudo: nada cai entre uma equipe e outra."
+  />
+
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {
+      services.map((service, index) => (
+        <article
+          class="reveal group flex flex-col gap-4 rounded-xl border border-border bg-surface/40 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-border-strong"
+          style={`--i: ${index}`}
+        >
+          <div class="flex items-center gap-3">
+            <span
+              class:list={[
+                "flex size-10 items-center justify-center rounded-lg border border-border bg-surface-2 transition-colors group-hover:border-border-strong",
+                service.color,
+              ]}
+            >
+              <Icon name={service.icon} size={18} />
+            </span>
+            <h3 class="text-base font-semibold text-fg">{service.title}</h3>
+          </div>
+          <p class="text-sm font-medium text-fg">{service.short}</p>
+          <p class="text-sm leading-relaxed text-fg-muted">{service.body}</p>
+        </article>
+      ))
+    }
+  </div>
+</Section>

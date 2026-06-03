@@ -1,0 +1,66 @@
+---
+import Section from "./Section.astro";
+import SectionHeader from "./SectionHeader.astro";
+
+const principles = [
+  {
+    title: "Engenharia primeiro",
+    body: "Stack moderna, código tipado, decisões explícitas. Performance e manutenibilidade tratadas como recurso de produto.",
+  },
+  {
+    title: "Design que vira código",
+    body: "Componentes reutilizáveis, tokens consistentes, acessibilidade desde o protótipo. Interface pensada pra ser desenvolvida — não pra ficar bonita no Behance.",
+  },
+  {
+    title: "Produto antes de feature",
+    body: "Cada funcionalidade resolve um problema real. Foco em entregar o essencial bem feito antes de inflar o escopo.",
+  },
+];
+---
+
+<Section id="sobre">
+  <SectionHeader
+    eyebrow="Sobre"
+    title="Não entrego só código. Entrego produto pensado, organizado e pronto pra rodar."
+    lead="Combino engenharia, design e estratégia no mesmo trabalho — quem contrata recebe interface, código e processo, não três coisas separadas."
+  />
+
+  <div class="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+    <div class="reveal flex flex-col gap-4 text-base leading-relaxed text-fg-muted">
+      <p>
+        Sou <span class="text-fg">Kauã Araujo de Souza</span>, estudante de
+        Ciência da Computação e desenvolvedor focado em construir produtos
+        digitais para empresas. Trabalho com sites, sistemas web, aplicações
+        mobile e interfaces para quem quer profissionalizar a operação
+        digital.
+      </p>
+      <p>
+        Acredito que código bom não é o suficiente — o produto precisa ser
+        claro pra quem usa, organizado pra quem mantém e bonito o bastante
+        pra ser orgulho da marca. Por isso meu trabalho atravessa
+        engenharia, UI/UX e a estrutura por trás dos fluxos.
+      </p>
+      <p>
+        Hoje atuo principalmente em <span class="text-fg"
+          >sistemas administrativos, dashboards, plataformas SaaS e
+          automação de processos</span
+        >. Aprendo rápido, entrego o combinado e prefiro projetos onde dá
+        pra pensar a solução, não só executar.
+      </p>
+    </div>
+
+    <ul class="grid gap-4 self-start">
+      {
+        principles.map((item, index) => (
+          <li
+            class="reveal flex flex-col gap-2 rounded-xl border border-border bg-surface/40 p-5 transition-colors hover:border-border-strong"
+            style={`--i: ${index + 1}`}
+          >
+            <h3 class="text-sm font-semibold text-fg">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-fg-muted">{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>

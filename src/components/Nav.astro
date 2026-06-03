@@ -1,0 +1,57 @@
+---
+import Icon from "./Icon.astro";
+
+const isHome = Astro.url.pathname === "/";
+const prefix = isHome ? "" : "/";
+const anchors = [
+  { id: "sobre", label: "Sobre" },
+  { id: "servicos", label: "Serviços" },
+  { id: "projetos", label: "Projetos" },
+  { id: "curriculo", label: "Currículo" },
+  { id: "processo", label: "Processo" },
+];
+const links = anchors.map((a) => ({
+  href: `${prefix}#${a.id}`,
+  label: a.label,
+}));
+const homeHref = isHome ? "#top" : "/";
+const contactHref = isHome ? "#contato" : "/#contato";
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border/60 bg-bg/70 backdrop-blur-md"
+>
+  <div class="container-page flex h-14 items-center justify-between">
+    <a
+      href={homeHref}
+      class="font-mono text-sm font-medium tracking-tight text-fg transition-colors hover:text-accent-hover"
+      aria-label="Início"
+    >
+      kauã<span class="text-accent">.</span>
+    </a>
+
+    <nav
+      class="hidden items-center gap-1 md:flex"
+      aria-label="Navegação principal"
+    >
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link rounded-md px-3 py-1.5 text-sm text-fg-muted transition-colors hover:text-fg"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={contactHref}
+      class="inline-flex items-center gap-1.5 rounded-md border border-border-strong bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-accent hover:bg-accent-deep/30 hover:text-accent-hover"
+    >
+      Falar comigo
+      <Icon name="arrow-right" size={14} class="text-accent" />
+    </a>
+  </div>
+</header>

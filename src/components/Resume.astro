@@ -1,0 +1,159 @@
+---
+import Section from "./Section.astro";
+import SectionHeader from "./SectionHeader.astro";
+import Icon from "./Icon.astro";
+
+const experiences = [
+  {
+    role: "Estagiário — Desenvolvedor Web e Mobile Jr.",
+    company: "Vistopred Soluções",
+    period: "Jan 2023 — Fev 2024",
+    bullets: [
+      "Desenvolvimento do site institucional em WordPress",
+      "Apoio no desenvolvimento do aplicativo mobile",
+      "Atendimento técnico aos clientes da plataforma",
+    ],
+  },
+  {
+    role: "Estagiário",
+    company: "Eseel Engenharia",
+    period: "Jul 2021 — Jan 2023",
+    bullets: [
+      "Relatórios técnicos e registro fotográfico de ensaios",
+      "Projetos em AutoCAD",
+      "Rotina administrativa com Pacote Office",
+    ],
+  },
+];
+
+const education = [
+  {
+    title: "Ciência da Computação",
+    where: "Universidade Vila Velha",
+    period: "5º período — formando em 2027",
+  },
+  {
+    title: "Ensino Médio Integrado — Técnico em Informática",
+    where: "EEEM Irmã Maria Horta",
+    period: "2021 — 2023",
+  },
+];
+---
+
+<Section id="curriculo">
+  <SectionHeader
+    eyebrow="Currículo"
+    title="Onde passei até aqui."
+    lead="Estudante de Ciência da Computação, 20 anos, morando em Vitória/ES. Comecei como técnico em informática no ensino médio e venho trabalhando como estagiário desde 2021."
+  />
+
+  <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+    <div class="flex flex-col gap-8">
+      <div class="reveal flex flex-col gap-5">
+        <h3
+          class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-fg-dim"
+        >
+          <span class="size-1 rounded-full bg-fg-dim"></span>
+          Experiência
+        </h3>
+
+        <ol class="flex flex-col gap-5">
+          {
+            experiences.map((item, index) => (
+              <li
+                class="reveal relative rounded-xl border border-border bg-surface/40 p-5 transition-colors hover:border-border-strong"
+                style={`--i: ${index + 1}`}
+              >
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h4 class="text-sm font-semibold text-fg">{item.role}</h4>
+                  <span class="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-fg-dim">
+                    {item.period}
+                  </span>
+                </div>
+                <p class="mt-1 text-sm text-accent">{item.company}</p>
+                <ul class="mt-3 flex flex-col gap-1.5 text-sm leading-relaxed text-fg-muted">
+                  {item.bullets.map((b) => (
+                    <li class="flex items-start gap-2">
+                      <span
+                        class="mt-2 inline-block size-1 shrink-0 rounded-full bg-fg-dim"
+                        aria-hidden="true"
+                      />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    <aside class="flex flex-col gap-8">
+      <div class="reveal flex flex-col gap-4" style="--i: 1">
+        <h3
+          class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-fg-dim"
+        >
+          <span class="size-1 rounded-full bg-fg-dim"></span>
+          Formação
+        </h3>
+        <ul class="flex flex-col gap-3">
+          {
+            education.map((item) => (
+              <li class="rounded-xl border border-border bg-surface/40 p-4">
+                <h4 class="text-sm font-semibold text-fg">{item.title}</h4>
+                <p class="mt-1 text-sm text-fg-muted">{item.where}</p>
+                <p class="mt-1 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-fg-dim">
+                  {item.period}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="reveal flex flex-col gap-3" style="--i: 2">
+        <h3
+          class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-fg-dim"
+        >
+          <span class="size-1 rounded-full bg-fg-dim"></span>
+          Certificações
+        </h3>
+        <ul class="flex flex-col gap-2 text-sm text-fg-muted">
+          <li class="flex items-start gap-2">
+            <Icon name="check" size={14} class="mt-1 shrink-0 text-accent" />
+            <span>
+              <span class="text-fg">Java Fundamentals</span> — Oracle Academy
+              <span class="font-mono text-xs text-fg-dim"> · 2025</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="check" size={14} class="mt-1 shrink-0 text-accent" />
+            <span>
+              <span class="text-fg">Database Foundations</span> — Oracle
+              Academy
+              <span class="font-mono text-xs text-fg-dim"> · 2024</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="check" size={14} class="mt-1 shrink-0 text-accent" />
+            <span>
+              <span class="text-fg">Inglês intermediário (W4)</span> — Wizard
+              by Pearson
+              <span class="font-mono text-xs text-fg-dim"> · 2023–2024</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <a
+        href="/curriculo"
+        class="reveal group inline-flex w-fit items-center gap-2 rounded-md border border-border-strong bg-surface px-4 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent hover:bg-accent-deep/30 hover:text-accent-hover"
+        style="--i: 3"
+      >
+        Ver currículo completo
+        <Icon name="arrow-right" size={14} class="text-accent" />
+      </a>
+    </aside>
+  </div>
+</Section>

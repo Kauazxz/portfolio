@@ -1,0 +1,110 @@
+---
+const orbs = [
+  { size: 340, x: "6%", y: "12%", color: "#ff3344", blur: 90, opacity: 0.18, anim: "a", duration: 26 },
+  { size: 260, x: "78%", y: "6%", color: "#581d27", blur: 80, opacity: 0.55, anim: "b", duration: 22 },
+  { size: 400, x: "58%", y: "68%", color: "#ff3344", blur: 110, opacity: 0.12, anim: "c", duration: 32 },
+  { size: 150, x: "22%", y: "76%", color: "#ff6363", blur: 55, opacity: 0.22, anim: "d", duration: 18 },
+  { size: 90, x: "84%", y: "58%", color: "#ff3344", blur: 28, opacity: 0.32, anim: "a", duration: 15 },
+  { size: 60, x: "36%", y: "42%", color: "#ff6363", blur: 16, opacity: 0.45, anim: "b", duration: 12 },
+];
+---
+
+<div aria-hidden="true" class="orbs">
+  {
+    orbs.map((o) => (
+      <span
+        class:list={["orb", `anim-${o.anim}`]}
+        style={`width:${o.size}px;height:${o.size}px;left:${o.x};top:${o.y};background-color:${o.color};filter:blur(${o.blur}px);opacity:${o.opacity};animation-duration:${o.duration}s;`}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .anim-a {
+    animation-name: float-a;
+  }
+  .anim-b {
+    animation-name: float-b;
+  }
+  .anim-c {
+    animation-name: float-c;
+  }
+  .anim-d {
+    animation-name: float-d;
+  }
+
+  @keyframes float-a {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(60px, -45px, 0);
+    }
+  }
+
+  @keyframes float-b {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(-80px, 55px, 0);
+    }
+  }
+
+  @keyframes float-c {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    33% {
+      transform: translate3d(-55px, -65px, 0);
+    }
+    66% {
+      transform: translate3d(45px, 25px, 0);
+    }
+  }
+
+  @keyframes float-d {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(70px, 40px, 0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .orb:nth-child(n + 5) {
+      display: none;
+    }
+    .orb {
+      filter: blur(50px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb {
+      animation: none;
+    }
+  }
+</style>

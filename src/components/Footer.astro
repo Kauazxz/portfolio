@@ -1,0 +1,54 @@
+---
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+const social = [
+  {
+    icon: "github" as const,
+    label: "GitHub",
+    href: "https://github.com/Kauazxz",
+  },
+  {
+    icon: "linkedin" as const,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/kau%C3%A3-araujo-de-souza/",
+  },
+  {
+    icon: "mail" as const,
+    label: "Email",
+    href: "mailto:araujokaua8@gmail.com",
+  },
+];
+---
+
+<footer class="border-t border-border">
+  <div
+    class="container-page flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center"
+  >
+    <div class="flex items-center gap-3">
+      <a
+        href="#top"
+        class="font-mono text-sm font-medium tracking-tight text-fg transition-colors hover:text-accent-hover"
+      >
+        kauã<span class="text-accent">.</span>
+      </a>
+      <span class="font-mono text-xs text-fg-dim">© {year}</span>
+    </div>
+
+    <nav class="flex items-center gap-1" aria-label="Redes sociais">
+      {
+        social.map((item) => (
+          <a
+            href={item.href}
+            target={item.label !== "Email" ? "_blank" : undefined}
+            rel={item.label !== "Email" ? "noopener noreferrer" : undefined}
+            class="flex size-9 items-center justify-center rounded-md text-fg-muted transition-colors hover:bg-surface hover:text-fg"
+            aria-label={item.label}
+          >
+            <Icon name={item.icon} size={16} />
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>
