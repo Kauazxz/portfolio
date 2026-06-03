@@ -2,34 +2,22 @@
 interface Props {
   eyebrow: string;
   title: string;
-  lead?: string;
+  subtitle?: string;
   align?: "left" | "center";
 }
 
-const { eyebrow, title, lead, align = "left" } = Astro.props;
+const { eyebrow, title, subtitle, align = "left" } = Astro.props;
 ---
 
 <header
   class:list={[
-    "reveal mb-12 md:mb-16 flex flex-col gap-4",
-    align === "center" && "items-center text-center",
-    align === "left" && "max-w-2xl",
+    "section-header reveal",
+    align === "center" && "mx-auto items-center text-center",
   ]}
 >
-  <span
-    class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-accent"
-  >
-    <span class="size-1 rounded-full bg-accent"></span>
-    {eyebrow}
-  </span>
-  <h2
-    class="text-balance text-3xl font-semibold tracking-tight text-fg md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]"
-  >
-    {title}
+  <span class="eyebrow">{eyebrow}</span>
+  <h2 class="title">
+    <slot name="title">{title}</slot>
   </h2>
-  {
-    lead && (
-      <p class="text-pretty text-base text-fg-muted md:text-lg">{lead}</p>
-    )
-  }
+  {subtitle && <p class="subtitle">{subtitle}</p>}
 </header>

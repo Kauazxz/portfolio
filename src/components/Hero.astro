@@ -1,120 +1,56 @@
 ---
-import Button from "./Button.astro";
 import Icon from "./Icon.astro";
-import HeroOrbs from "./HeroOrbs.astro";
-
-type Word = string | { text: string; accent: true };
-const headline: Word[] = [
-  "Desenvolvedor",
-  "full-stack",
-  "com",
-  { text: "olho", accent: true },
-  { text: "de", accent: true },
-  { text: "design", accent: true },
-  "e",
-  { text: "cabeça", accent: true },
-  { text: "de", accent: true },
-  { text: "produto.", accent: true },
-];
 ---
 
-<section id="top" class="relative overflow-hidden">
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_-15%,rgba(255,51,68,0.18),transparent_60%)]"
-  >
-  </div>
-
-  <HeroOrbs />
-
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 opacity-[0.03] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_85%)]"
-  >
-  </div>
-
-  <div class="container-page relative pt-24 pb-20 md:pt-32 md:pb-24">
-    <div class="grid items-center gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-      <div class="flex flex-col">
-        <div
-          class="animate-in mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-xs text-fg-muted backdrop-blur-sm"
-        >
-          <span class="relative flex size-1.5">
-            <span
-              class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"
-            ></span>
-            <span
-              class="relative inline-flex size-1.5 rounded-full bg-accent"
-            ></span>
-          </span>
+<section id="top" class="relative">
+  <div class="container pt-20 pb-16 md:pt-28 md:pb-20">
+    <div
+      class="grid items-center gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14"
+    >
+      <div class="reveal flex flex-col gap-6">
+        <span class="badge w-fit">
+          <span class="badge-dot"></span>
           Disponível para novos projetos
-        </div>
+        </span>
 
-        <h1
-          class="text-balance text-[2.5rem] font-bold leading-[1.04] tracking-[-0.025em] md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem]"
-        >
-          {
-            headline.map((word, index) => {
-              const text = typeof word === "string" ? word : word.text;
-              const isAccent = typeof word !== "string";
-              return (
-                <>
-                  <span
-                    class:list={["word-reveal", isAccent && "text-accent"]}
-                    style={`--i: ${index}`}
-                  >
-                    {text}
-                  </span>
-                  {index < headline.length - 1 && " "}
-                </>
-              );
-            })
-          }
+        <h1 class="title-xl">
+          Desenvolvedor full-stack com
+          <span class="accent-text">olhar de design</span>
+          e
+          <span class="accent-text">cabeça de produto</span>.
         </h1>
 
-        <p
-          class="animate-in mt-6 max-w-xl text-pretty text-base text-fg-muted md:text-lg"
-          style="animation-delay: 160ms"
-        >
-          Crio sites, sistemas web, aplicativos e interfaces modernas — do
-          primeiro rabisco ao deploy.
+        <p class="subtitle">
+          Crio sites, sistemas web e interfaces modernas com foco em
+          performance, clareza visual e experiência do usuário — do primeiro
+          rascunho ao deploy.
         </p>
 
-        <div
-          class="animate-in mt-9 flex flex-wrap items-center gap-3"
-          style="animation-delay: 240ms"
-        >
-          <Button href="#projetos" size="lg">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <a href="#projetos" class="button button-primary">
             Ver projetos
-            <Icon name="arrow-right" size={16} />
-          </Button>
-          <Button href="#contato" variant="secondary" size="lg">
+            <Icon name="arrow-right" size={15} />
+          </a>
+          <a href="#contato" class="button button-secondary">
             Falar comigo
-          </Button>
+          </a>
         </div>
       </div>
 
       <div
-        class="animate-in relative mx-auto w-full max-w-sm lg:max-w-none"
-        style="animation-delay: 320ms"
+        class="reveal relative mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:mx-0 lg:ml-auto lg:max-w-[420px]"
+        style="transition-delay: 120ms"
       >
-        <div
-          aria-hidden="true"
-          class="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-accent/15 via-accent/[0.04] to-transparent blur-2xl"
-        >
-        </div>
-        <div
-          aria-hidden="true"
-          class="absolute -right-3 -top-3 size-20 rounded-full border border-accent/30 bg-accent/[0.06]"
-        >
-        </div>
         <figure
-          class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-strong bg-surface shadow-[0_30px_80px_-30px_rgba(255,51,68,0.25)]"
+          class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-strong bg-surface"
+          style="max-height: 560px"
         >
+          {/* TODO: trocar /me.webp pela foto definitiva quando tiver */}
           <img
             src="/me.webp"
-            alt="Retrato de Kauã"
+            alt="Retrato de Kauã Araujo"
             class="size-full object-cover"
+            style="object-position: center top"
             loading="eager"
             decoding="async"
           />
@@ -123,8 +59,9 @@ const headline: Word[] = [
             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent"
           >
           </div>
+
           <figcaption
-            class="absolute bottom-4 left-4 flex items-center gap-2 rounded-md border border-border-strong/80 bg-bg/70 px-3 py-1.5 font-mono text-[0.7rem] text-fg backdrop-blur-md"
+            class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 rounded-md border border-border-strong bg-bg/80 px-2 py-1 font-mono text-[0.7rem] text-fg backdrop-blur-sm"
           >
             <span class="size-1.5 rounded-full bg-accent"></span>
             Kauã Araujo · Vitória, ES
@@ -132,47 +69,5 @@ const headline: Word[] = [
         </figure>
       </div>
     </div>
-
-    <dl
-      class="animate-in mt-20 grid max-w-3xl grid-cols-2 gap-x-10 gap-y-7 border-t border-border pt-10 md:grid-cols-4"
-      style="animation-delay: 400ms"
-    >
-      <div class="flex flex-col gap-1.5">
-        <dt
-          class="inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim"
-        >
-          <Icon name="code" size={12} class="text-sky-400" />
-          Web
-        </dt>
-        <dd class="text-sm text-fg">Sites & sistemas</dd>
-      </div>
-      <div class="flex flex-col gap-1.5">
-        <dt
-          class="inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim"
-        >
-          <Icon name="smartphone" size={12} class="text-fuchsia-400" />
-          Mobile
-        </dt>
-        <dd class="text-sm text-fg">Apps sob medida</dd>
-      </div>
-      <div class="flex flex-col gap-1.5">
-        <dt
-          class="inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim"
-        >
-          <Icon name="palette" size={12} class="text-accent" />
-          Design
-        </dt>
-        <dd class="text-sm text-fg">UI & branding</dd>
-      </div>
-      <div class="flex flex-col gap-1.5">
-        <dt
-          class="inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim"
-        >
-          <Icon name="zap" size={12} class="text-amber-400" />
-          Automação
-        </dt>
-        <dd class="text-sm text-fg">Processos digitais</dd>
-      </div>
-    </dl>
   </div>
 </section>

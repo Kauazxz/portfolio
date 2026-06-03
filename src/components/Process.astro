@@ -1,72 +1,53 @@
 ---
-import Section from "./Section.astro";
 import SectionHeader from "./SectionHeader.astro";
 
 const steps = [
   {
     number: "01",
-    title: "Conversa inicial",
-    body: "Entendo o problema, o público e o que define sucesso pra você. Sem brief preenchido, sem orçamento ainda — só alinhar a direção.",
+    title: "Entendimento",
+    body: "Antes de codar, entendo o objetivo, o público, as telas necessárias e o que realmente precisa ser resolvido.",
   },
   {
     number: "02",
-    title: "Planejamento",
-    body: "Mapeio escopo, funcionalidades, tecnologias e prazo. Você sabe exatamente o que vem em cada entrega antes de começar.",
+    title: "Estrutura",
+    body: "Organizo a arquitetura, componentes, design system, fluxos e prioridades da primeira versão.",
   },
   {
     number: "03",
-    title: "Interface",
-    body: "Crio o design no Figma e valido com você antes de escrever uma linha de código. Mudança de layout em protótipo custa minutos — em código, dias.",
+    title: "Desenvolvimento",
+    body: "Transformo o planejamento em interface e funcionalidade, mantendo código limpo e responsivo.",
   },
   {
     number: "04",
-    title: "Desenvolvimento",
-    body: "Construo com stack moderna, código tipado e entregas parciais. Você acompanha o progresso sem precisar entender o código.",
-  },
-  {
-    number: "05",
-    title: "Testes",
-    body: "Valido em desktop, mobile e navegadores diferentes. Você recebe pronto pra usar, sem surpresa no dia do lançamento.",
-  },
-  {
-    number: "06",
-    title: "Entrega & suporte",
-    body: "Deploy, documentação e acompanhamento pós-entrega. O projeto não morre no go-live — fica preparado pra evoluir.",
+    title: "Entrega",
+    body: "Faço deploy, reviso detalhes, ajusto performance e deixo o projeto preparado para evoluir.",
   },
 ];
 ---
 
-<Section id="processo">
-  <SectionHeader
-    eyebrow="Como eu trabalho"
-    title="Processo claro, entrega sem surpresa."
-    lead="Seis etapas que aplico em todo projeto — não importa o tamanho. Cada uma com objetivo definido e validação contigo antes de avançar."
-  />
+<section id="processo" class="section bg-bg-2/40">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Processo"
+      title="Meu processo para tirar uma ideia do papel."
+      subtitle="Gosto de construir com clareza: entender primeiro, desenhar o caminho, desenvolver com organização e melhorar depois da entrega."
+    />
 
-  <ol class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {
-      steps.map((step, index) => (
-        <li
-          class="reveal group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-surface/40 p-6 transition-colors hover:border-border-strong"
-          style={`--i: ${index}`}
-        >
-          <span
-            aria-hidden="true"
-            class="pointer-events-none absolute -right-2 -top-3 font-mono text-[5rem] font-bold leading-none text-fg-dim/10 transition-colors duration-300 group-hover:text-accent/15"
+    <ol class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, i) => (
+          <li
+            class="card card-hover reveal flex-col"
+            style={`transition-delay: ${i * 60}ms`}
           >
-            {step.number}
-          </span>
-          <div class="relative flex items-center gap-3">
-            <span class="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+            <span class="font-mono text-sm font-medium text-accent">
               {step.number}
             </span>
             <h3 class="text-base font-semibold text-fg">{step.title}</h3>
-          </div>
-          <p class="relative text-sm leading-relaxed text-fg-muted">
-            {step.body}
-          </p>
-        </li>
-      ))
-    }
-  </ol>
-</Section>
+            <p class="text-sm leading-relaxed text-muted">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

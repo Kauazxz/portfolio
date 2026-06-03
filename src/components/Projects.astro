@@ -1,92 +1,90 @@
 ---
-import Section from "./Section.astro";
 import SectionHeader from "./SectionHeader.astro";
-import ProjectCard from "./ProjectCard.astro";
+import Icon from "./Icon.astro";
 
+// TODO: substituir por projetos reais quando estiverem prontos.
 const projects = [
   {
-    title: "VistoPred",
-    category: "Dev" as const,
-    summary:
-      "Plataforma completa de inspeção e manutenção predial. Centraliza cadastros, checklists, controle de estoque, geração de relatórios e validação de documentos em um único painel administrativo.",
-    context:
-      "Concepção, arquitetura, desenvolvimento full-stack e modelagem dos fluxos de dados.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind"],
-    year: "2025",
-    featured: true,
+    title: "Sistema web sob medida",
+    description:
+      "Aplicação focada em organizar processos, melhorar a experiência do usuário e facilitar a gestão de informações.",
+    tags: ["React", "Node.js", "PostgreSQL", "UI"],
+    detailsHref: "#",
+    codeHref: "#",
   },
   {
-    title: "L.A.D.P.A.R Tecnologia",
-    category: "Design" as const,
-    summary:
-      "Site institucional e estrutura digital completa para fabricante de desidratadores industriais. Catálogo organizado por linha de produto, identidade visual coerente e páginas comerciais com caminho claro até o contato.",
-    context: "Estratégia digital, design de interface e desenvolvimento.",
-    tags: ["Astro", "Tailwind", "CMS"],
-    year: "2024",
+    title: "Landing page de alta conversão",
+    description:
+      "Página moderna, rápida e responsiva para apresentar serviços, destacar diferenciais e gerar contato.",
+    tags: ["HTML", "CSS", "JavaScript", "Performance"],
+    detailsHref: "#",
+    codeHref: "#",
   },
   {
-    title: "Portfólio pessoal",
-    category: "Dev" as const,
-    summary:
-      "Este site. Construído do zero com a mesma stack e exigência que aplico em projetos de cliente. Estático, rápido, dark theme, animações sutis e arquitetura componentizada.",
-    context: "Design, desenvolvimento e copy — projeto próprio.",
-    tags: ["Astro", "React", "Tailwind", "TypeScript"],
-    year: "2026",
-  },
-  {
-    title: "Validação de documentos",
-    category: "IA" as const,
-    summary:
-      "Sistemas administrativos para cadastro de prestadores, upload e validação automatizada de documentos, com painel de aprovação para gestores, controle de status e trilha de auditoria.",
-    context: "Modelagem do fluxo de aprovação e desenvolvimento full-stack.",
-    tags: ["Node.js", "PostgreSQL", "Webhooks"],
-    year: "2024",
+    title: "Interface para produto digital",
+    description:
+      "Estrutura visual pensada para deixar funcionalidades complexas mais simples, claras e agradáveis de usar.",
+    tags: ["Figma", "UI Design", "Design System"],
+    detailsHref: "#",
+    codeHref: null,
   },
 ];
 ---
 
-<Section id="projetos">
-  <SectionHeader
-    eyebrow="Projetos"
-    title="Trabalhos selecionados."
-    lead="Uma amostra do que construí recentemente — produtos próprios, sistemas para clientes e presença digital para marcas."
-  />
+<section id="projetos" class="section">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Projetos em destaque"
+      title="Trabalhos selecionados e estudos."
+      subtitle="Alguns trabalhos e estudos que mostram minha forma de pensar, construir e entregar soluções digitais."
+    />
 
-  <div class="project-grid grid gap-5 md:grid-cols-2">
-    {projects.map((project, index) => <ProjectCard {...project} index={index} />)}
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((project, i) => (
+          <article
+            class="card card-accent-hover reveal group"
+            style={`transition-delay: ${i * 60}ms`}
+          >
+            <div class="flex aspect-[16/10] items-center justify-center rounded-lg border border-border bg-bg-2 text-fg-dim transition-colors group-hover:border-border-strong">
+              {/* Placeholder visual — trocar por imagem/preview do projeto */}
+              <span class="font-mono text-xs uppercase tracking-[0.18em]">
+                Preview
+              </span>
+            </div>
+
+            <h3 class="text-lg font-semibold text-fg">{project.title}</h3>
+            <p class="text-sm leading-relaxed text-muted">
+              {project.description}
+            </p>
+
+            <ul class="flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <li class="tech-tag">{tag}</li>
+              ))}
+            </ul>
+
+            <div class="mt-2 flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href={project.detailsHref}
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-fg transition-colors hover:text-accent"
+              >
+                Ver detalhes
+                <Icon name="arrow-up-right" size={14} />
+              </a>
+              {project.codeHref && (
+                <a
+                  href={project.codeHref}
+                  class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
+                >
+                  Ver código
+                  <Icon name="arrow-up-right" size={14} />
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
   </div>
-</Section>
-
-<script>
-  const cards = document.querySelectorAll<HTMLElement>(".project-grid .tilt");
-  const supportsHover = window.matchMedia(
-    "(hover: hover) and (pointer: fine)",
-  ).matches;
-  const reduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-
-  if (supportsHover && !reduced) {
-    cards.forEach((card) => {
-      let raf = 0;
-      const onMove = (e: PointerEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          card.style.transform = `perspective(900px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
-        });
-      };
-      const onEnter = () => card.classList.add("is-tilting");
-      const onLeave = () => {
-        card.classList.remove("is-tilting");
-        cancelAnimationFrame(raf);
-        card.style.transform = "";
-      };
-      card.addEventListener("pointerenter", onEnter);
-      card.addEventListener("pointermove", onMove);
-      card.addEventListener("pointerleave", onLeave);
-    });
-  }
-</script>
+</section>

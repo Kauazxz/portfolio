@@ -1,0 +1,59 @@
+---
+import TechIcon from "./TechIcon.astro";
+
+type IconName = Parameters<typeof TechIcon>[0]["name"];
+interface Tech {
+  icon: IconName;
+  label: string;
+}
+
+// Ordem visual pensada pra equilibrar a grade (front → back → DB → infra → design).
+const techs: Tech[] = [
+  { icon: "html", label: "HTML" },
+  { icon: "css", label: "CSS" },
+  { icon: "javascript", label: "JavaScript" },
+  { icon: "typescript", label: "TypeScript" },
+  { icon: "react", label: "React" },
+  { icon: "next", label: "Next.js" },
+  { icon: "tailwind", label: "Tailwind" },
+  { icon: "node", label: "Node.js" },
+  { icon: "python", label: "Python" },
+  { icon: "fastapi", label: "FastAPI" },
+  { icon: "postgresql", label: "PostgreSQL" },
+  { icon: "firebase", label: "Firebase" },
+  { icon: "mongodb", label: "MongoDB" },
+  { icon: "git", label: "Git" },
+  { icon: "github", label: "GitHub" },
+  { icon: "docker", label: "Docker" },
+  { icon: "vercel", label: "Vercel" },
+  { icon: "figma", label: "Figma" },
+];
+---
+
+<section id="stack" class="section">
+  <div class="container">
+    <header class="stack-header reveal">
+      <span class="eyebrow">Stack</span>
+      <h2 class="title">Tecnologias e ferramentas</h2>
+      <p class="subtitle">
+        Uso essas tecnologias para criar sites, sistemas e interfaces modernas,
+        rápidas e bem construídas.
+      </p>
+    </header>
+
+    <div class="stack-showcase reveal" style="transition-delay: 80ms">
+      <ul class="stack-cards" role="list">
+        {
+          techs.map((tech) => (
+            <li class="stack-card" title={tech.label}>
+              <span class="stack-card-icon">
+                <TechIcon name={tech.icon} size={26} />
+              </span>
+              <span class="stack-card-name">{tech.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

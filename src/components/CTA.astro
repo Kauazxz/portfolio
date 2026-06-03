@@ -1,0 +1,48 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section id="contato" class="section">
+  <div class="container">
+    <div
+      class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-8 md:p-14"
+    >
+      <div
+        aria-hidden="true"
+        class="accent-glow"
+        style="top: -180px; right: -160px; width: 380px; height: 380px;"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="accent-glow"
+        style="bottom: -200px; left: -120px; width: 320px; height: 320px; opacity: 0.7;"
+      >
+      </div>
+
+      <div class="relative flex flex-col gap-6 md:max-w-2xl">
+        <span class="eyebrow">Contato</span>
+        <h2 class="title">
+          Tem uma ideia ou projeto em mente?
+        </h2>
+        <p class="subtitle">
+          Posso te ajudar a transformar isso em uma página, sistema ou
+          interface bem construída, moderna e pronta para evoluir.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            href="mailto:araujokaua8@gmail.com"
+            class="button button-primary"
+          >
+            Falar comigo
+            <Icon name="arrow-right" size={16} />
+          </a>
+          <a href="#projetos" class="button button-secondary">
+            Ver projetos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

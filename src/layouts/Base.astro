@@ -1,8 +1,5 @@
 ---
 import "../styles/global.css";
-import Nav from "../components/Nav.astro";
-import Footer from "../components/Footer.astro";
-import ScrollProgress from "../components/ScrollProgress.astro";
 
 interface Props {
   title?: string;
@@ -10,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Kauã — Desenvolvedor, designer, IA & motion",
-  description = "Portfólio de Kauã: desenvolvimento, design, automação com IA e produção de vídeo e motion.",
+  title = "Kauã Araujo — Desenvolvedor full-stack",
+  description = "Desenvolvedor full-stack com olhar de design e cabeça de produto. Sites, sistemas web e interfaces modernas com performance e bom gosto visual.",
 } = Astro.props;
 ---
 
@@ -22,7 +19,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="theme-color" content="#050507" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -31,79 +28,41 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
-  <body class="bg-bg text-fg font-sans">
+  <body>
+    <div class="site-bg" aria-hidden="true"></div>
+
     <a
-      href="#top"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-3 focus:py-1.5 focus:text-sm focus:font-medium focus:text-white"
-      >Pular para o conteúdo</a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-md focus:bg-accent focus:px-3 focus:py-1.5 focus:text-sm focus:font-medium focus:text-white"
     >
-    <ScrollProgress />
-    <Nav />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+      Pular para o conteúdo
+    </a>
+
+    <slot />
 
     <script>
-      const reveals = document.querySelectorAll(".reveal");
+      // Reveal sutil das seções ao entrar no viewport — sem libs externas.
+      const els = document.querySelectorAll<HTMLElement>(".reveal");
       if ("IntersectionObserver" in window) {
         const io = new IntersectionObserver(
           (entries) => {
-            entries.forEach((entry) => {
+            for (const entry of entries) {
               if (entry.isIntersecting) {
                 entry.target.classList.add("is-visible");
                 io.unobserve(entry.target);
               }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-        );
-        reveals.forEach((el) => io.observe(el));
-      } else {
-        reveals.forEach((el) => el.classList.add("is-visible"));
-      }
-
-      const navLinks = document.querySelectorAll<HTMLAnchorElement>(
-        "header nav a[href^='#']",
-      );
-      const sectionIds = Array.from(navLinks)
-        .map((a) => a.getAttribute("href")?.slice(1))
-        .filter((id): id is string => Boolean(id));
-      const sections = sectionIds
-        .map((id) => document.getElementById(id))
-        .filter((el): el is HTMLElement => el !== null);
-
-      if (sections.length > 0 && "IntersectionObserver" in window) {
-        const activeIds = new Set<string>();
-        const setActive = () => {
-          let current: string | null = null;
-          for (const id of sectionIds) {
-            if (activeIds.has(id)) {
-              current = id;
-              break;
             }
-          }
-          navLinks.forEach((link) => {
-            const isActive = link.getAttribute("href") === `#${current}`;
-            link.classList.toggle("is-active", isActive);
-          });
-        };
-        const navIo = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) activeIds.add(entry.target.id);
-              else activeIds.delete(entry.target.id);
-            });
-            setActive();
           },
-          { rootMargin: "-40% 0px -50% 0px" },
+          { threshold: 0.1, rootMargin: "0px 0px -8% 0px" },
         );
-        sections.forEach((s) => navIo.observe(s));
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add("is-visible"));
       }
     </script>
   </body>
