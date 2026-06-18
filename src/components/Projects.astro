@@ -1,56 +1,48 @@
 ---
 import SectionHeader from "./SectionHeader.astro";
 import Icon from "./Icon.astro";
+import { projects } from "../data/projects";
 
-// TODO: substituir por projetos reais quando estiverem prontos.
-const projects = [
-  {
-    title: "Sistema web sob medida",
-    description:
-      "Aplicação focada em organizar processos, melhorar a experiência do usuário e facilitar a gestão de informações.",
-    tags: ["React", "Node.js", "PostgreSQL", "UI"],
-    detailsHref: "#",
-    codeHref: "#",
-  },
-  {
-    title: "Landing page de alta conversão",
-    description:
-      "Página moderna, rápida e responsiva para apresentar serviços, destacar diferenciais e gerar contato.",
-    tags: ["HTML", "CSS", "JavaScript", "Performance"],
-    detailsHref: "#",
-    codeHref: "#",
-  },
-  {
-    title: "Interface para produto digital",
-    description:
-      "Estrutura visual pensada para deixar funcionalidades complexas mais simples, claras e agradáveis de usar.",
-    tags: ["Figma", "UI Design", "Design System"],
-    detailsHref: "#",
-    codeHref: null,
-  },
-];
+// Home mostra só 3 projetos como preview — a página /projetos tem todos.
+const preview = projects.slice(0, 3);
 ---
 
 <section id="projetos" class="section">
-  <div class="container">
+  <div class="site-container">
     <SectionHeader
       eyebrow="Projetos em destaque"
       title="Trabalhos selecionados e estudos."
       subtitle="Alguns trabalhos e estudos que mostram minha forma de pensar, construir e entregar soluções digitais."
     />
 
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div
+      class:list={[
+        "grid gap-4",
+        preview.length === 1 && "mx-auto max-w-md",
+        preview.length === 2 && "md:grid-cols-2",
+        preview.length >= 3 && "md:grid-cols-2 lg:grid-cols-3",
+      ]}
+    >
       {
-        projects.map((project, i) => (
+        preview.map((project, i) => (
           <article
             class="card card-accent-hover reveal group"
             style={`transition-delay: ${i * 60}ms`}
           >
-            <div class="flex aspect-[16/10] items-center justify-center rounded-lg border border-border bg-bg-2 text-fg-dim transition-colors group-hover:border-border-strong">
-              {/* Placeholder visual — trocar por imagem/preview do projeto */}
-              <span class="font-mono text-xs uppercase tracking-[0.18em]">
-                Preview
-              </span>
+            <div class="relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-lg border border-border bg-bg-2 text-fg-dim transition-colors group-hover:border-border-strong">
+              {project.previewImage ? (
+                <img
+                  src={project.previewImage}
+                  alt={`Preview do projeto ${project.title}`}
+                  class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <span class="font-mono text-xs uppercase tracking-[0.18em]">
+                  Preview
+                </span>
+              )}
             </div>
 
             <h3 class="text-lg font-semibold text-fg">{project.title}</h3>
@@ -59,22 +51,24 @@ const projects = [
             </p>
 
             <ul class="flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
+              {project.tags.slice(0, 4).map((tag) => (
                 <li class="tech-tag">{tag}</li>
               ))}
             </ul>
 
             <div class="mt-2 flex flex-wrap items-center gap-3 pt-2">
               <a
-                href={project.detailsHref}
+                href={project.caseUrl ?? `/projetos#${project.id}`}
                 class="inline-flex items-center gap-1.5 text-sm font-medium text-fg transition-colors hover:text-accent"
               >
                 Ver detalhes
                 <Icon name="arrow-up-right" size={14} />
               </a>
-              {project.codeHref && (
+              {project.codeUrl && (
                 <a
-                  href={project.codeHref}
+                  href={project.codeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
                 >
                   Ver código
@@ -85,6 +79,13 @@ const projects = [
           </article>
         ))
       }
+    </div>
+
+    <div class="reveal mt-10 flex justify-center">
+      <a href="/projetos" class="button button-secondary">
+        Ver matriz completa de projetos
+        <Icon name="arrow-right" size={14} />
+      </a>
     </div>
   </div>
 </section>

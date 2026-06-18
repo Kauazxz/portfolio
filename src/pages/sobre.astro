@@ -1,0 +1,556 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const siteUrl = "https://portfolio-bgz.pages.dev";
+const pageUrl = `${siteUrl}/sobre`;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Kauã Araujo de Souza",
+  givenName: "Kauã",
+  familyName: "Araujo de Souza",
+  jobTitle: "Desenvolvedor Full-Stack",
+  url: pageUrl,
+  image: `${siteUrl}/me.webp`,
+  email: "mailto:araujokaua8@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Vitória",
+    addressRegion: "ES",
+    addressCountry: "BR",
+  },
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Universidade Vila Velha",
+      sameAs: "https://uvv.br/",
+    },
+    {
+      "@type": "EducationalOrganization",
+      name: "EEEM Irmã Maria Horta",
+    },
+  ],
+  knowsAbout: [
+    "Desenvolvimento Web",
+    "Desenvolvimento Mobile",
+    "Interfaces Responsivas",
+    "UI/UX",
+    "Front-end",
+    "Back-end",
+    "Banco de Dados",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "Tailwind CSS",
+    "Astro",
+  ],
+  sameAs: [
+    "https://github.com/Kauazxz",
+    "https://www.linkedin.com/in/kau%C3%A3-araujo-de-souza/",
+  ],
+};
+
+const experiences = [
+  {
+    period: "Fev 2025 — Fev 2026",
+    role: "Assistente de E-commerce",
+    company: "ByMoonKids",
+    description:
+      "Atuei na operação digital de loja de roupas infantis online e física. Apoiei o cadastro e atualização de produtos, organização das informações e manutenção do e-commerce na plataforma Tray, além da exportação para canais externos como Mercado Livre.",
+    bullets: [
+      "Cadastro e atualização de produtos no e-commerce",
+      "Organização de descrições, preços, imagens e informações dos produtos",
+      "Exportação de produtos para Mercado Livre e Tray",
+      "Apoio na manutenção do site da loja na plataforma Tray",
+      "Rotina ligada à operação de loja online e física",
+    ],
+  },
+  {
+    period: "Jan 2023 — Fev 2024",
+    role: "Estagiário — Desenvolvedor web e mobile Jr.",
+    company: "Vistopred Soluções",
+    description:
+      "Atuei na presença digital e no produto da empresa. Trabalho dividido entre o site institucional, o aplicativo mobile e o atendimento direto aos clientes da plataforma.",
+    bullets: [
+      "Desenvolvimento do site principal em WordPress",
+      "Apoio no desenvolvimento do aplicativo mobile",
+      "Suporte técnico aos clientes da plataforma",
+    ],
+  },
+  {
+    period: "Jul 2021 — Jan 2023",
+    role: "Estagiário",
+    company: "Eseel Engenharia",
+    description:
+      "Primeira experiência profissional, ainda durante o ensino médio técnico. Rotina ligada a documentação técnica, registros em campo e suporte aos projetos.",
+    bullets: [
+      "Relatórios técnicos e registro fotográfico de ensaios",
+      "Participação em projetos com AutoCAD",
+      "Rotina administrativa com Pacote Office",
+    ],
+  },
+];
+
+const education = [
+  {
+    title: "Bacharelado em Ciência da Computação",
+    institution: "Universidade Vila Velha",
+    period: "2024 — 2027",
+    status: "6º período · em andamento",
+    note: "Previsão de conclusão: 2027",
+  },
+  {
+    title: "Ensino Médio Integrado — Técnico em Informática",
+    institution: "EEEM Irmã Maria Horta",
+    period: "2021 — 2023",
+    status: "Concluído",
+    note: null,
+  },
+];
+
+const disciplinas = [
+  "Construção de Software para Web",
+  "Desenvolvimento de Sistemas para Web",
+  "Desenvolvimento Mobile",
+  "Experiência e Interface com o Usuário",
+  "Design e Desenvolvimento de Banco de Dados",
+  "Engenharia de Software",
+  "Programação Orientada a Objetos",
+  "Estrutura de Dados",
+  "Laboratório de Programação",
+  "Linguagens de Programação",
+  "Qualidade e Testes de Software",
+  "Sistemas Operacionais",
+  "Arquitetura e Organização de Computadores",
+  "Governança em Tecnologia da Informação",
+  "Inovação e Design Thinking",
+];
+
+const habilidades = [
+  {
+    label: "Front-end",
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Astro",
+      "Responsividade",
+      "UI",
+      "Design System",
+    ],
+  },
+  {
+    label: "Mobile",
+    items: [
+      "Dart",
+      "Flutter",
+      "Design mobile responsivo",
+      "Integração com APIs",
+    ],
+  },
+  {
+    label: "Back-end e lógica",
+    items: [
+      "Node.js",
+      "Python",
+      "FastAPI",
+      "APIs REST",
+      "Programação orientada a objetos",
+      "Estrutura de dados",
+      "PostgreSQL",
+      "MySQL",
+      "Firebase",
+      "MongoDB",
+      "C",
+      "Java",
+    ],
+  },
+  {
+    label: "Ferramentas",
+    items: [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Figma",
+      "Postman",
+      "Docker",
+      "Vercel",
+      "WordPress",
+    ],
+  },
+  {
+    label: "Outros conhecimentos",
+    items: [
+      "Inglês intermediário",
+      "Tráfego pago (Meta + Google)",
+      "Gerenciamento de transmissão ao vivo",
+      "Canva",
+      "Pacote Office",
+    ],
+  },
+];
+
+const certs = [
+  {
+    title: "Java Fundamentals — Português",
+    issuer: "Oracle Academy",
+    period: "Ago 2025 — Dez 2025",
+  },
+  {
+    title: "Database Foundations — Português",
+    issuer: "Oracle Academy",
+    period: "Mar 2024 — Jun 2024",
+  },
+  {
+    title: "Inglês intermediário (W4)",
+    issuer: "Wizard by Pearson",
+    period: "2023 — 2024",
+  },
+];
+---
+
+<Base
+  title="Kauã Araujo de Souza — Desenvolvedor Full-Stack em Vitória, ES"
+  description="Conheça Kauã Araujo de Souza, desenvolvedor full-stack em formação em Vitória, ES, com foco em desenvolvimento web, mobile, interfaces responsivas, UI/UX, tecnologia e produtos digitais."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content={`${siteUrl}/me.webp`} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(personJsonLd)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <main id="main">
+    <section class="section">
+      <div class="site-container">
+        <a
+          href="/"
+          class="reveal mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-fg-dim transition-colors hover:text-fg"
+        >
+          <Icon name="arrow-right" size={12} class="-scale-x-100" />
+          Voltar pra home
+        </a>
+
+        <header class="reveal flex max-w-2xl flex-col gap-3">
+          <span class="eyebrow">Sobre mim</span>
+          <h1 class="title-xl">Quem eu sou.</h1>
+          <p class="subtitle">
+            Desenvolvedor full-stack em formação em Vitória/ES, com foco em
+            interfaces modernas, responsivas e experiências digitais bem
+            construídas.
+          </p>
+        </header>
+
+        <div
+          class="reveal mt-8 grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-12"
+          style="transition-delay: 100ms"
+        >
+          <div class="prose-wide flex flex-col gap-5">
+            <p class="text-base leading-relaxed text-muted">
+              Sou <span class="text-fg">Kauã Araujo de Souza</span>,
+              desenvolvedor full-stack em formação, moro em Vitória, ES, e
+              curso Ciência da Computação na Universidade Vila Velha. Minha
+              trajetória em tecnologia começou no ensino médio técnico em
+              informática e evoluiu com experiências práticas em
+              desenvolvimento web, mobile, suporte técnico e criação de
+              produtos digitais.
+            </p>
+            <p class="text-base leading-relaxed text-muted">
+              Tenho foco em desenvolvimento web, interfaces modernas,
+              responsividade, mobile e experiência do usuário. Gosto de
+              transformar ideias em soluções que funcionam bem em qualquer
+              tela, unindo código, design e visão de produto para criar
+              sistemas bonitos, organizados, intuitivos e fáceis de usar.
+            </p>
+            <p class="text-base leading-relaxed text-muted">
+              Atualmente, estou evoluindo como desenvolvedor full-stack,
+              estudando novas tecnologias, criando projetos próprios e
+              utilizando ferramentas de inteligência artificial como apoio
+              para estudo, produtividade, prototipação e melhoria no processo
+              de desenvolvimento, sempre mantendo responsabilidade sobre a
+              qualidade final do projeto.
+            </p>
+          </div>
+
+          <figure class="relative mx-auto w-full max-w-[220px] lg:mx-0 lg:ml-auto">
+            <div
+              class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border-strong bg-surface"
+            >
+              <img
+                src="/me.webp"
+                alt="Retrato de Kauã Araujo de Souza, desenvolvedor full-stack em Vitória, ES"
+                class="size-full object-cover"
+                style="object-position: center top"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent"
+              >
+              </div>
+            </div>
+            <figcaption
+              class="mt-3 text-center font-mono text-xs text-fg-dim"
+            >
+              Kauã · Vitória, ES
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Trajetória</span>
+          <h2 class="title">Onde passei até aqui.</h2>
+          <p class="subtitle">
+            Experiências práticas que formaram minha base em tecnologia,
+            e-commerce, produto digital e processos de trabalho.
+          </p>
+        </header>
+
+        <ol class="flex flex-col gap-4">
+          {
+            experiences.map((exp, i) => (
+              <li
+                class="card card-hover reveal"
+                style={`transition-delay: ${i * 80}ms`}
+              >
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 class="text-lg font-semibold text-fg">{exp.role}</h3>
+                  <span class="font-mono text-xs uppercase tracking-[0.12em] text-dim">
+                    {exp.period}
+                  </span>
+                </div>
+                <p class="text-sm font-medium text-accent">{exp.company}</p>
+                <p class="text-sm leading-relaxed text-muted">
+                  {exp.description}
+                </p>
+                <ul class="mt-2 flex flex-col gap-2 text-sm text-muted">
+                  {exp.bullets.map((b) => (
+                    <li class="flex items-start gap-2.5">
+                      <Icon
+                        name="check"
+                        size={14}
+                        class="mt-1 shrink-0 text-accent"
+                      />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Formação</span>
+          <h2 class="title">O que estudei.</h2>
+        </header>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            education.map((ed, i) => (
+              <article
+                class="card card-hover reveal"
+                style={`transition-delay: ${i * 80}ms`}
+              >
+                <div class="flex items-baseline justify-between gap-4">
+                  <h3 class="text-base font-semibold text-fg">{ed.title}</h3>
+                  <span class="shrink-0 font-mono text-xs uppercase tracking-[0.12em] text-dim">
+                    {ed.period}
+                  </span>
+                </div>
+                <p class="text-sm font-medium text-accent">{ed.institution}</p>
+                <p class="text-sm text-muted">{ed.status}</p>
+                {ed.note && (
+                  <p class="text-sm text-dim">{ed.note}</p>
+                )}
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Disciplinas relevantes</span>
+          <h2 class="title">O que estudo na graduação.</h2>
+          <p class="subtitle">
+            Conteúdos do curso de Ciência da Computação que dialogam direto
+            com o que aplico em projetos de desenvolvimento.
+          </p>
+        </header>
+
+        <ul class="reveal flex flex-wrap gap-2" style="transition-delay: 80ms">
+          {
+            disciplinas.map((d) => (
+              <li class="tech-tag text-fg">{d}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Habilidades</span>
+          <h2 class="title">Como me organizo tecnicamente.</h2>
+          <p class="subtitle">
+            Conhecimentos que aplico no dia a dia, agrupados por contexto de
+            uso.
+          </p>
+        </header>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            habilidades.map((grupo, i) => (
+              <article
+                class:list={[
+                  "card card-hover reveal",
+                  i === habilidades.length - 1 && "md:col-span-2",
+                ]}
+                style={`transition-delay: ${i * 60}ms`}
+              >
+                <div class="flex items-center gap-2.5">
+                  <span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+                  <h3 class="text-base font-semibold text-fg">{grupo.label}</h3>
+                  <span class="font-mono text-xs text-dim">
+                    {String(grupo.items.length).padStart(2, "0")}
+                  </span>
+                </div>
+                <ul class="flex flex-wrap gap-1.5">
+                  {grupo.items.map((item) => (
+                    <li class="tech-tag transition-colors hover:border-accent-border hover:text-fg">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Certificações</span>
+          <h2 class="title">Cursos e idiomas.</h2>
+        </header>
+
+        <ul class="flex flex-col gap-3">
+          {
+            certs.map((c, i) => (
+              <li
+                class="card card-hover reveal gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                style={`transition-delay: ${i * 60}ms`}
+              >
+                <div class="flex items-start gap-3">
+                  <Icon
+                    name="check"
+                    size={16}
+                    class="mt-0.5 shrink-0 text-accent"
+                  />
+                  <div class="flex flex-col gap-0.5">
+                    <h3 class="text-sm font-semibold text-fg">{c.title}</h3>
+                    <p class="text-sm text-muted">{c.issuer}</p>
+                  </div>
+                </div>
+                <span class="shrink-0 font-mono text-xs uppercase tracking-[0.12em] text-dim">
+                  {c.period}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <div class="reveal prose-wide">
+          <span class="eyebrow">Buscando agora</span>
+          <h2 class="title mt-4">O que estou procurando.</h2>
+          <div class="mt-6 flex flex-col gap-5">
+            <p class="text-base leading-relaxed text-muted">
+              Estou em busca de oportunidades em desenvolvimento web,
+              front-end, full-stack ou suporte ao desenvolvimento de produtos
+              digitais — seja em equipe de produto, agência ou trabalho
+              direto com cliente.
+            </p>
+            <p class="text-base leading-relaxed text-muted">
+              Tenho interesse em projetos que envolvam interfaces modernas,
+              sistemas responsivos, experiência do usuário, automações e uso
+              inteligente da tecnologia para resolver problemas reais.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <div
+          class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-6 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            class="accent-glow"
+            style="top: -160px; right: -140px; width: 340px; height: 340px;"
+          >
+          </div>
+
+          <div class="relative flex flex-col gap-5 md:max-w-xl">
+            <span class="eyebrow">Contato</span>
+            <h2 class="title">Vamos conversar?</h2>
+            <p class="subtitle">
+              Se faz sentido pra você, dá uma olhada nos projetos ou me chama
+              direto. Respondo em até 24h.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="/#projetos" class="button button-primary">
+                Ver projetos
+                <Icon name="arrow-right" size={15} />
+              </a>
+              <a href="/#contato" class="button button-secondary">
+                Falar comigo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

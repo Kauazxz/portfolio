@@ -1,0 +1,428 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+
+const siteUrl = "https://portfolio-bgz.pages.dev";
+const pageUrl = `${siteUrl}/projetos/mao-certa`;
+const demoUrl = "https://mao-certa.vercel.app/";
+const codeUrl = "https://github.com/Kauazxz/MaoCerta";
+
+const features = [
+  "Cadastro e autenticação de usuários",
+  "Escolha entre cliente e profissional",
+  "Perfil de usuário com dados do atendimento",
+  "Busca de profissionais por categoria",
+  "Publicação de demandas pelo cliente",
+  "Visualização de oportunidades pelo profissional",
+  "Fluxo de contato entre as partes",
+  "Estrutura preparada pra evolução com chat, propostas, avaliações e planos",
+];
+
+const techStack = [
+  {
+    name: "Next.js 14",
+    role: "Estrutura da aplicação, roteamento e renderização server-side.",
+  },
+  {
+    name: "Supabase",
+    role: "Autenticação, banco PostgreSQL e armazenamento de arquivos.",
+  },
+  {
+    name: "Tailwind CSS",
+    role: "Estilização baseada em utilitários e responsividade mobile-first.",
+  },
+  {
+    name: "Vercel",
+    role: "Deploy contínuo a cada push e hospedagem em edge.",
+  },
+];
+
+const projectJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "MãoCerta",
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "Marketplace",
+  operatingSystem: "Web",
+  url: demoUrl,
+  codeRepository: codeUrl,
+  description:
+    "Aplicação web que conecta clientes a profissionais de serviços presenciais. Busca, publicação de demandas e contato entre as partes em um lugar só.",
+  creator: {
+    "@type": "Person",
+    name: "Kauã Araujo de Souza",
+    url: `${siteUrl}/sobre`,
+  },
+  inLanguage: "pt-BR",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "BRL",
+    availability: "https://schema.org/InStock",
+  },
+};
+---
+
+<Base
+  title="MãoCerta — Projeto de aplicativo web para serviços presenciais | Kauã Araujo"
+  description="Conheça o MãoCerta, projeto desenvolvido por Kauã Araujo com Next.js, Supabase, Tailwind CSS e Vercel para conectar clientes a profissionais de serviços presenciais."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="article" />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(projectJsonLd)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <main id="main">
+    <section class="section">
+      <div class="site-container">
+        <a
+          href="/projetos"
+          class="reveal mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-fg-dim transition-colors hover:text-fg"
+        >
+          <Icon name="arrow-right" size={12} class="-scale-x-100" />
+          Voltar pra projetos
+        </a>
+
+        <header class="reveal flex flex-col gap-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge">
+              <span
+                class="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_3px_rgba(52,211,153,0.18)]"
+                aria-hidden="true"
+              ></span>
+              Ao vivo
+            </span>
+            <span class="badge">2026</span>
+            <span class="badge">Web app</span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="eyebrow">Projeto / Em destaque</span>
+            <h1 class="title-xl">MãoCerta</h1>
+            <p
+              class="font-mono text-sm text-accent md:text-base"
+            >
+              Produto digital · Marketplace de serviços · Web app
+            </p>
+          </div>
+
+          <p class="subtitle">
+            Aplicativo web para conectar pessoas que precisam de serviços com
+            profissionais disponíveis na região.
+          </p>
+
+          <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-primary justify-center sm:justify-start"
+            >
+              Ver demo
+              <Icon name="arrow-up-right" size={15} />
+            </a>
+            <a
+              href={codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-secondary justify-center sm:justify-start"
+            >
+              <Icon name="github" size={15} />
+              Ver código
+              <Icon name="arrow-up-right" size={15} />
+            </a>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container">
+        <div class="reveal relative">
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-accent/[0.06] blur-3xl"
+          >
+          </div>
+
+          <figure
+            class="relative overflow-hidden rounded-xl border border-border-strong bg-bg-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
+          >
+            <div
+              class="flex items-center gap-1.5 border-b border-border bg-bg px-3.5 py-2.5"
+            >
+              <span class="size-2.5 rounded-full bg-[#ff5f57]"></span>
+              <span class="size-2.5 rounded-full bg-[#febc2e]"></span>
+              <span class="size-2.5 rounded-full bg-[#28c840]"></span>
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ml-3 inline-flex items-center gap-1.5 truncate font-mono text-[0.7rem] text-fg-muted transition-colors hover:text-fg"
+              >
+                mao-certa.vercel.app
+                <Icon name="arrow-up-right" size={11} />
+              </a>
+            </div>
+
+            <img
+              src="/projects/mao-certa/hero.png"
+              alt="Tela inicial do MãoCerta no desktop, mostrando opção de login e seleção entre cliente e profissional"
+              class="block w-full"
+              width="1900"
+              height="920"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </figure>
+
+          <figure
+            class="absolute bottom-[-8%] right-2 hidden w-[16%] min-w-[100px] max-w-[140px] rotate-2 overflow-hidden rounded-xl border-4 border-bg shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] sm:block md:right-6 lg:bottom-[-12%] lg:right-10 lg:w-[18%]"
+          >
+            <img
+              src="/projects/mao-certa/mobile.png"
+              alt="Tela inicial do MãoCerta no mobile, layout responsivo"
+              class="block w-full"
+              width="482"
+              height="892"
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">Sobre o projeto</span>
+          <h2 class="title">Como o MãoCerta começou.</h2>
+        </header>
+
+        <div
+          class="reveal prose-wide flex flex-col gap-5"
+          style="transition-delay: 80ms"
+        >
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O MãoCerta nasceu pra organizar uma contratação que normalmente
+            acontece de forma informal: serviço presencial pedido em grupo de
+            WhatsApp, indicação no boca a boca, post em rede social. A
+            proposta é dar pro cliente um caminho mais claro pra encontrar
+            profissional e pro profissional uma vitrine pra ser encontrado.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            A plataforma intermedia o primeiro contato — busca, publicação de
+            demanda e canal pra combinar o resto. O atendimento em si continua
+            sendo entre as duas partes; a plataforma só dá estrutura pra essa
+            ponte ficar mais clara, segura e prática.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">Problema</span>
+          <h2 class="title">O que motivou a solução.</h2>
+        </header>
+
+        <div
+          class="reveal prose-wide flex flex-col gap-5"
+          style="transition-delay: 80ms"
+        >
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            Quem precisa contratar pintor, eletricista, faxineira ou qualquer
+            serviço presencial geralmente passa pelo mesmo caminho: pergunta
+            no grupo do prédio, pede indicação pra amigo, busca em rede
+            social. Sem organização, sem histórico de quem já foi contratado,
+            sem critério claro pra decidir.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            Do outro lado, o profissional autônomo depende muito de boca a
+            boca pra fechar trabalho. Quem entrega bom serviço fica preso ao
+            alcance do próprio círculo. Quem tá começando, no zero.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">Solução</span>
+          <h2 class="title">Como o MãoCerta resolve.</h2>
+        </header>
+
+        <div
+          class="reveal prose-wide flex flex-col gap-5"
+          style="transition-delay: 80ms"
+        >
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O MãoCerta centraliza esse encontro num lugar só. Cliente cria
+            conta, busca por categoria ou região, ou publica a demanda que
+            tem. Profissional cria perfil, vê as oportunidades que aparecem
+            por perto, oferece o serviço e segue pro contato direto.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O fluxo deixa visível pras duas partes quem é quem antes de
+            combinar o atendimento — categoria, localização e perfil já dão
+            base pra decidir se vale ir adiante.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Funcionalidades</span>
+          <h2 class="title">O que está disponível.</h2>
+          <p class="subtitle">
+            Funcionalidades já no ar na plataforma, com estrutura pronta pra
+            crescer nas próximas iterações.
+          </p>
+        </header>
+
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {
+            features.map((feature, i) => (
+              <li
+                class="card card-hover reveal flex-row items-start gap-3"
+                style={`transition-delay: ${i * 40}ms`}
+              >
+                <Icon
+                  name="check"
+                  size={16}
+                  class="mt-1 shrink-0 text-accent"
+                />
+                <span class="text-sm leading-relaxed text-fg md:text-[0.95rem]">
+                  {feature}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Tecnologias utilizadas</span>
+          <h2 class="title">Como foi construído.</h2>
+        </header>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            techStack.map((tech, i) => (
+              <article
+                class="card card-accent-hover reveal"
+                style={`transition-delay: ${i * 60}ms`}
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-fg">{tech.name}</h3>
+                  <span class="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-dim">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted">{tech.role}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">O que aprendi</span>
+          <h2 class="title">O que esse projeto me ensinou.</h2>
+        </header>
+
+        <div
+          class="reveal prose-wide flex flex-col gap-5"
+          style="transition-delay: 80ms"
+        >
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            Esse projeto me obrigou a pensar como produto, não só como
+            código. Modelar usuário-cliente e usuário-profissional como
+            entidades diferentes mas que compartilham mesa de autenticação.
+            Decidir quando informação fica pública e quando precisa de login.
+            Estruturar a busca pra funcionar bem com 5 profissionais e ainda
+            escalar pra 500.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            Na parte técnica, foi a primeira vez que coloquei autenticação
+            real em prática, modelei banco com Supabase, lidei com upload de
+            arquivos no storage e fiz deploy contínuo na Vercel. Também
+            ajustei responsividade pensando que muita gente vai abrir do
+            celular — desktop e mobile precisam funcionar igual de bem.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O projeto está no ar e respondendo: o fluxo principal funciona
+            ponta a ponta, e a estrutura ficou preparada pra crescer com chat
+            interno, propostas formais, avaliações e área administrativa nas
+            próximas iterações.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <div
+          class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-6 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            class="accent-glow"
+            style="top: -160px; right: -140px; width: 340px; height: 340px;"
+          >
+          </div>
+
+          <div class="relative flex flex-col gap-5 md:max-w-xl">
+            <span class="eyebrow">Mais projetos</span>
+            <h2 class="title">Quer ver o resto do trabalho?</h2>
+            <p class="subtitle">
+              Outros projetos, estudos e protótipos estão na matriz completa.
+              E se você tem uma ideia que combina, é só me chamar.
+            </p>
+
+            <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <a
+                href="/projetos"
+                class="button button-primary justify-center sm:justify-start"
+              >
+                Ver outros projetos
+                <Icon name="arrow-right" size={15} />
+              </a>
+              <a
+                href="/#contato"
+                class="button button-secondary justify-center sm:justify-start"
+              >
+                Falar comigo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

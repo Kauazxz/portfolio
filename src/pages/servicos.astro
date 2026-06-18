@@ -1,0 +1,266 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const siteUrl = "https://portfolio-bgz.pages.dev";
+const pageUrl = `${siteUrl}/servicos`;
+
+const developServices = [
+  {
+    icon: "layout" as const,
+    title: "Sites e landing pages",
+    body: "Páginas modernas, responsivas e pensadas para apresentar marcas, serviços, projetos e produtos com clareza.",
+    tags: ["Site institucional", "Landing page", "Site de portfólio"],
+  },
+  {
+    icon: "code" as const,
+    title: "Sistemas web",
+    body: "Desenvolvimento de aplicações sob medida, com boa estrutura, organização de dados e experiência simples para o usuário.",
+    tags: ["Dashboard", "Painel admin", "CRUD", "Integração com APIs"],
+  },
+  {
+    icon: "palette" as const,
+    title: "Interfaces e UI",
+    body: "Criação e melhoria de telas, componentes e layouts com foco em visual moderno, consistência, usabilidade e responsividade.",
+    tags: ["Design system", "Componentes", "Protótipo Figma", "UI revisada"],
+  },
+  {
+    icon: "wrench" as const,
+    title: "Deploy, manutenção e performance",
+    body: "Publicação de projetos, configuração de domínio, ajustes de responsividade, melhorias de velocidade, correção de bugs e evolução contínua.",
+    tags: ["Deploy", "Domínio", "Performance", "Correção de bugs"],
+  },
+];
+
+const supportServices = [
+  {
+    icon: "image" as const,
+    title: "Design e conteúdo visual",
+    body: "Criação de artes, imagens, posts, banners, apresentações, thumbnails e materiais visuais usando ferramentas como Canva, com foco em comunicação clara, estética profissional e identidade visual.",
+    canInclude: [
+      "Posts para redes sociais",
+      "Banners",
+      "Apresentações",
+      "Capas e thumbnails",
+      "Materiais comerciais",
+      "Imagens para sites e landing pages",
+    ],
+  },
+  {
+    icon: "video" as const,
+    title: "Edição de vídeo",
+    body: "Edição simples e objetiva para vídeos curtos, redes sociais, apresentações, divulgação de serviços ou materiais institucionais.",
+    canInclude: [
+      "Cortes para Reels, TikTok e Shorts",
+      "Legendas",
+      "Ajustes de áudio",
+      "Cortes simples",
+      "Vídeos de apresentação de produto",
+      "Thumbnails e capas",
+    ],
+  },
+  {
+    icon: "shield" as const,
+    title: "Testes e qualidade",
+    body: "Apoio na validação de sites, sistemas e aplicativos: verifico funcionamento, responsividade, fluxo do usuário e possíveis erros antes da entrega.",
+    canInclude: [
+      "Testes manuais",
+      "Testes funcionais",
+      "Testes de responsividade",
+      "Registro de bugs",
+      "Evidências com prints",
+      "Casos de teste",
+      "Validação de fluxo do usuário",
+      "Revisão visual e usabilidade",
+    ],
+  },
+];
+---
+
+<Base
+  title="Serviços — Kauã Araujo de Souza, Desenvolvedor Full-Stack em Vitória, ES"
+  description="Serviços de Kauã Araujo: sites, landing pages, sistemas web, interfaces (UI), deploy e manutenção. Também atuo em design no Canva, edição de vídeo e testes manuais de qualidade."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="pt_BR" />
+  </Fragment>
+
+  <Header />
+
+  <main id="main">
+    <section class="section">
+      <div class="site-container">
+        <a
+          href="/"
+          class="reveal mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-fg-dim transition-colors hover:text-fg"
+        >
+          <Icon name="arrow-right" size={12} class="-scale-x-100" />
+          Voltar pra home
+        </a>
+
+        <header class="reveal flex max-w-2xl flex-col gap-3">
+          <span class="eyebrow">Serviços</span>
+          <h1 class="title-xl">No que eu ajudo.</h1>
+          <p class="subtitle">
+            Desenvolvimento web e mobile é o meu foco principal. Em paralelo,
+            apoio etapas complementares que ajudam um projeto digital a ficar
+            mais completo.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container">
+        <header
+          class="reveal mb-6 flex flex-wrap items-center gap-3 md:mb-8"
+        >
+          <span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+          <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-fg">
+            O que eu desenvolvo
+          </h2>
+          <span class="font-mono text-xs text-fg-dim">
+            {String(developServices.length).padStart(2, "0")}
+          </span>
+          <span
+            aria-hidden="true"
+            class="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+          ></span>
+        </header>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            developServices.map((service, i) => (
+              <article
+                class="card card-accent-hover reveal"
+                style={`transition-delay: ${i * 60}ms`}
+              >
+                <span class="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-surface-2 text-accent">
+                  <Icon name={service.icon} size={18} />
+                </span>
+                <h3 class="text-base font-semibold text-fg md:text-lg">
+                  {service.title}
+                </h3>
+                <p class="text-sm leading-relaxed text-muted">{service.body}</p>
+                <ul class="mt-auto flex flex-wrap gap-1.5 pt-2">
+                  {service.tags.map((tag) => (
+                    <li class="tech-tag">{tag}</li>
+                  ))}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="site-container">
+        <header
+          class="reveal mb-6 flex flex-wrap items-center gap-3 md:mb-8"
+        >
+          <span class="size-1.5 rounded-full bg-fg-muted" aria-hidden="true"></span>
+          <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-fg">
+            Como também posso ajudar
+          </h2>
+          <span class="font-mono text-xs text-fg-dim">
+            {String(supportServices.length).padStart(2, "0")}
+          </span>
+          <span
+            aria-hidden="true"
+            class="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+          ></span>
+        </header>
+
+        <div class="reveal prose-wide mb-6">
+          <p class="text-base leading-relaxed text-muted">
+            Além do desenvolvimento web e mobile, também atuo em etapas
+            complementares que ajudam um projeto digital a ficar mais
+            completo: criação de materiais visuais, design com Canva, edição
+            de vídeos curtos e testes manuais para validar funcionamento,
+            responsividade e experiência do usuário.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-muted">
+            Essa combinação me permite contribuir não só com o código, mas
+            também com a apresentação, comunicação e qualidade final do
+            projeto.
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-3">
+          {
+            supportServices.map((service, i) => (
+              <article
+                class="card card-hover reveal"
+                style={`transition-delay: ${i * 80}ms`}
+              >
+                <span class="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-surface-2 text-fg-muted">
+                  <Icon name={service.icon} size={18} />
+                </span>
+                <h3 class="text-base font-semibold text-fg">{service.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{service.body}</p>
+
+                <div class="mt-2 flex flex-col gap-2 pt-2">
+                  <span class="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-dim">
+                    Pode incluir
+                  </span>
+                  <ul class="flex flex-col gap-1.5">
+                    {service.canInclude.map((item) => (
+                      <li class="flex items-start gap-2 text-sm text-muted">
+                        <span
+                          class="mt-2 size-1 shrink-0 rounded-full bg-fg-dim"
+                          aria-hidden="true"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container">
+        <div
+          class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-6 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            class="accent-glow"
+            style="top: -160px; right: -140px; width: 340px; height: 340px;"
+          >
+          </div>
+
+          <div class="relative flex flex-col gap-5 md:max-w-xl">
+            <span class="eyebrow">Próximos passos</span>
+            <h2 class="title">Tem um projeto em mente?</h2>
+            <p class="subtitle">
+              Me manda uma mensagem com a ideia. Em conversa rápida a gente
+              alinha escopo, prazo e investimento.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="/#contato" class="button button-primary">
+                Falar comigo
+                <Icon name="arrow-right" size={15} />
+              </a>
+              <a href="/#projetos" class="button button-secondary">
+                Ver projetos
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

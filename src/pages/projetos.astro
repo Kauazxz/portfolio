@@ -1,0 +1,399 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { projects, statusLabel } from "../data/projects";
+
+const siteUrl = "https://portfolio-bgz.pages.dev";
+const pageUrl = `${siteUrl}/projetos`;
+
+const featured = projects.find((p) => p.featured);
+const others = projects.filter((p) => !p.featured);
+const total = projects.length;
+
+function statusColor(status: string) {
+  switch (status) {
+    case "live":
+      return "bg-emerald-400 shadow-[0_0_0_3px_rgba(52,211,153,0.18)]";
+    case "in-progress":
+      return "bg-amber-400 shadow-[0_0_0_3px_rgba(251,191,36,0.18)]";
+    default:
+      return "bg-fg-dim shadow-[0_0_0_3px_rgba(113,113,122,0.18)]";
+  }
+}
+---
+
+<Base
+  title="Projetos — Kauã Araujo de Souza, Desenvolvedor Full-Stack"
+  description="Matriz completa de projetos: sites, landing pages, sistemas web, interfaces e produtos digitais construídos por Kauã Araujo de Souza."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="pt_BR" />
+  </Fragment>
+
+  <Header />
+
+  <main id="main">
+    <section class="section">
+      <div class="site-container">
+        <a
+          href="/"
+          class="reveal mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-fg-dim transition-colors hover:text-fg"
+        >
+          <Icon name="arrow-right" size={12} class="-scale-x-100" />
+          Voltar pra home
+        </a>
+
+        <header class="reveal flex max-w-2xl flex-col gap-3">
+          <span class="eyebrow">Projetos</span>
+          <h1 class="title-xl">Matriz completa.</h1>
+          <p class="subtitle">
+            Trabalhos próprios, estudos e protótipos. Cada um aqui mostra um
+            ângulo diferente da forma como penso, construo e entrego.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    {
+      featured && (
+        <section class="section pt-0">
+          <div class="site-container">
+            <header class="reveal mb-5 flex flex-wrap items-center gap-3 md:mb-6">
+              <span
+                class="size-1.5 rounded-full bg-accent"
+                aria-hidden="true"
+              />
+              <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-fg">
+                Em destaque
+              </h2>
+              <span
+                aria-hidden="true"
+                class="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+              />
+            </header>
+
+            <article
+              id={featured.id}
+              class="card reveal scroll-mt-24 overflow-hidden p-0 md:p-0"
+            >
+              <div class="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
+                <div class="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-border bg-bg-2 lg:aspect-auto lg:border-b-0 lg:border-r">
+                  {featured.previewImage ? (
+                    <img
+                      src={featured.previewImage}
+                      alt={`Preview do projeto ${featured.title}`}
+                      class="size-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <>
+                      <div
+                        aria-hidden="true"
+                        class="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]"
+                      />
+                      <div class="relative flex flex-col items-center gap-3 px-6 text-center">
+                        <span class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim">
+                          Preview
+                        </span>
+                        <p class="font-mono text-lg text-fg-muted md:text-xl">
+                          {featured.title}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div class="flex flex-col gap-4 p-5 md:p-7">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="badge">
+                      <span
+                        class:list={["size-1.5 rounded-full", statusColor(featured.status)]}
+                      />
+                      {statusLabel[featured.status]}
+                    </span>
+                    <span class="font-mono text-xs text-fg-dim">
+                      {featured.year}
+                    </span>
+                  </div>
+
+                  <div class="flex flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-fg md:text-3xl">
+                      {featured.title}
+                    </h3>
+                    <p class="font-mono text-sm text-accent">
+                      {featured.role}
+                    </p>
+                  </div>
+
+                  <p class="text-base leading-relaxed text-muted">
+                    {featured.description}
+                  </p>
+
+                  <div class="flex flex-col gap-2">
+                    <span class="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-dim">
+                      Destaques
+                    </span>
+                    <ul class="flex flex-col gap-1.5">
+                      {featured.highlights.map((h) => (
+                        <li class="flex items-start gap-2 text-sm text-muted">
+                          <Icon
+                            name="check"
+                            size={14}
+                            class="mt-0.5 shrink-0 text-accent"
+                          />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <ul class="flex flex-wrap gap-1.5">
+                    {featured.tags.map((t) => (
+                      <li class="tech-tag">{t}</li>
+                    ))}
+                  </ul>
+
+                  <div class="mt-auto flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
+                    {featured.demoUrl ? (
+                      <a
+                        href={featured.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="button button-primary justify-center sm:justify-start"
+                      >
+                        Ver demo
+                        <Icon name="arrow-up-right" size={14} />
+                      </a>
+                    ) : (
+                      <span class="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-2 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-fg-dim sm:justify-start">
+                        Demo em breve
+                      </span>
+                    )}
+                    {featured.codeUrl ? (
+                      <a
+                        href={featured.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="button button-secondary justify-center sm:justify-start"
+                      >
+                        <Icon name="github" size={14} />
+                        Ver código
+                        <Icon name="arrow-up-right" size={14} />
+                      </a>
+                    ) : (
+                      <span class="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-2 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-fg-dim sm:justify-start">
+                        Código privado
+                      </span>
+                    )}
+                    {featured.caseUrl && (
+                      <a
+                        href={featured.caseUrl}
+                        class="inline-flex items-center self-start justify-center gap-1.5 px-1 py-2 text-sm font-medium text-fg-muted transition-colors hover:text-accent sm:justify-start"
+                      >
+                        Ver case completo
+                        <Icon name="arrow-right" size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      others.length > 0 && (
+        <section class="section pt-0">
+          <div class="site-container">
+            <header class="reveal mb-5 flex flex-wrap items-center gap-3 md:mb-6">
+              <span
+                class="size-1.5 rounded-full bg-fg-muted"
+                aria-hidden="true"
+              />
+              <h2 class="font-mono text-xs uppercase tracking-[0.18em] text-fg">
+                Mais projetos
+              </h2>
+              <span class="font-mono text-xs text-fg-dim">
+                {String(others.length).padStart(2, "0")} /{" "}
+                {String(total).padStart(2, "0")}
+              </span>
+              <span
+                aria-hidden="true"
+                class="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+              />
+            </header>
+
+            <div class="grid gap-5 md:grid-cols-2">
+          {
+            others.map((project, i) => (
+              <article
+                id={project.id}
+                class="card card-accent-hover reveal scroll-mt-24 group flex flex-col gap-0 overflow-hidden p-0"
+                style={`transition-delay: ${i * 80}ms`}
+              >
+                <div class="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-border bg-bg-2">
+                  {project.previewImage ? (
+                    <img
+                      src={project.previewImage}
+                      alt={`Preview do projeto ${project.title}`}
+                      class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <>
+                      <div
+                        aria-hidden="true"
+                        class="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)] transition-opacity duration-300 group-hover:opacity-50"
+                      />
+                      <div class="relative flex flex-col items-center gap-2 px-4 text-center">
+                        <span class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg-dim">
+                          Preview
+                        </span>
+                        <p class="font-mono text-sm text-fg-muted">
+                          {project.title}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div class="flex flex-1 flex-col gap-4 p-6">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="badge">
+                      <span
+                        class:list={["size-1.5 rounded-full", statusColor(project.status)]}
+                      />
+                      {statusLabel[project.status]}
+                    </span>
+                    <span class="font-mono text-xs text-fg-dim">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  <div class="flex flex-col gap-1">
+                    <h3 class="text-xl font-semibold text-fg">
+                      {project.title}
+                    </h3>
+                    <p class="font-mono text-xs text-accent">
+                      {project.role}
+                    </p>
+                  </div>
+
+                  <p class="text-sm leading-relaxed text-muted">
+                    {project.description}
+                  </p>
+
+                  <div class="flex flex-col gap-1.5">
+                    <span class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-dim">
+                      Destaques
+                    </span>
+                    <ul class="flex flex-col gap-1">
+                      {project.highlights.map((h) => (
+                        <li class="flex items-start gap-2 text-xs text-muted">
+                          <Icon
+                            name="check"
+                            size={12}
+                            class="mt-0.5 shrink-0 text-accent"
+                          />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <ul class="flex flex-wrap gap-1.5">
+                    {project.tags.map((t) => (
+                      <li class="tech-tag">{t}</li>
+                    ))}
+                  </ul>
+
+                  <div class="mt-auto flex flex-wrap items-center gap-2 pt-2">
+                    {project.demoUrl ? (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-sm font-medium text-fg transition-colors hover:text-accent"
+                      >
+                        Ver projeto
+                        <Icon name="arrow-up-right" size={13} />
+                      </a>
+                    ) : (
+                      <span class="inline-flex items-center gap-1.5 text-sm text-dim">
+                        Demo em breve
+                      </span>
+                    )}
+                    <span class="text-fg-dim" aria-hidden="true">
+                      ·
+                    </span>
+                    {project.codeUrl ? (
+                      <a
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
+                      >
+                        <Icon name="github" size={13} />
+                        Código
+                      </a>
+                    ) : (
+                      <span class="inline-flex items-center gap-1.5 text-sm text-dim">
+                        <Icon name="github" size={13} />
+                        Privado
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section">
+      <div class="site-container">
+        <div
+          class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-6 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            class="accent-glow"
+            style="top: -160px; right: -140px; width: 340px; height: 340px;"
+          >
+          </div>
+
+          <div class="relative flex flex-col gap-5 md:max-w-xl">
+            <span class="eyebrow">Contato</span>
+            <h2 class="title">Quer um projeto assim?</h2>
+            <p class="subtitle">
+              Me manda uma mensagem com a ideia. A gente alinha escopo, prazo
+              e investimento numa conversa rápida.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="/#contato" class="button button-primary">
+                Falar comigo
+                <Icon name="arrow-right" size={15} />
+              </a>
+              <a href="/servicos" class="button button-secondary">
+                Ver serviços
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

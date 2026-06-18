@@ -3,29 +3,36 @@ import SectionHeader from "./SectionHeader.astro";
 import Icon from "./Icon.astro";
 ---
 
-<section id="sobre" class="section">
-  <div class="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start lg:gap-20">
+<section class="section">
+  <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-start lg:gap-12">
     <SectionHeader
       eyebrow="Sobre mim"
       title="Código, design e visão de produto no mesmo lugar."
     />
 
-    <div class="reveal flex flex-col gap-5" style="transition-delay: 80ms">
+    <div
+      class="reveal prose-wide flex flex-col gap-5"
+      style="transition-delay: 80ms"
+    >
       <p class="text-base leading-relaxed text-muted">
         Sou <span class="text-fg">Kauã Araujo de Souza</span>, desenvolvedor
-        full-stack em formação contínua, com interesse em criar produtos
-        digitais que tenham boa aparência, boa estrutura e boa experiência de
-        uso. Gosto de unir código, design e visão de produto para construir
-        soluções que funcionem bem e façam sentido para quem usa.
+        full-stack em formação, com foco em interfaces modernas, responsivas
+        e experiências digitais bem construídas.
       </p>
       <p class="text-base leading-relaxed text-muted">
-        Tenho foco em desenvolvimento web, interfaces modernas, sistemas
-        responsivos e evolução constante como profissional de tecnologia.
+        Gosto de transformar ideias em produtos que funcionam bem em qualquer
+        tela, unindo código, design e visão de produto para criar sistemas
+        bonitos, organizados, intuitivos e fáceis de usar no desktop e no
+        mobile.
+      </p>
+      <p class="text-base leading-relaxed text-muted">
+        Estou sempre evoluindo como desenvolvedor, buscando melhorar a
+        qualidade do meu código, a usabilidade das interfaces e o valor final
+        de cada projeto que entrego.
       </p>
 
       <div class="pt-2">
-        {/* TODO: apontar para a futura página /sobre quando ela existir */}
-        <a href="#" class="button button-secondary">
+        <a href="/sobre" class="button button-secondary">
           Conhecer minha trajetória
           <Icon name="arrow-right" size={14} />
         </a>

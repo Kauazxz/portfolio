@@ -26,12 +26,12 @@ const services = [
 ];
 ---
 
-<section id="servicos" class="section">
-  <div class="container">
+<section class="section">
+  <div class="site-container">
     <SectionHeader
       eyebrow="O que eu faço"
       title="Crio produtos digitais que unem código, design e objetivo."
-      subtitle="Meu foco é construir experiências digitais que sejam bonitas, rápidas, responsivas e fáceis de manter."
+      subtitle="Meu foco é desenvolvimento web e mobile. Em paralelo apoio design, conteúdo visual, edição de vídeo e testes manuais."
     />
 
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -49,6 +49,13 @@ const services = [
           </article>
         ))
       }
+    </div>
+
+    <div class="reveal mt-8 flex justify-center">
+      <a href="/servicos" class="button button-secondary">
+        Ver todos os serviços
+        <Icon name="arrow-right" size={14} />
+      </a>
     </div>
   </div>
 </section>
