@@ -1,0 +1,372 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+
+const siteUrl = "https://portfolio-bgz.pages.dev";
+const pageUrl = `${siteUrl}/projetos/vistopred`;
+const demoUrl = "https://vistopred.pages.dev";
+
+const features = [
+  "Site multipágina (home, sobre, soluções, blog, downloads, tutoriais, contato)",
+  "Tema claro/escuro com design system próprio",
+  "Logo 3D interativa (model-viewer)",
+  "Blog em Markdown com sumário automático e busca",
+  "Página de downloads de e-books e materiais técnicos",
+  "Modal de “Solicitar demonstração”",
+  "Layout responsivo (desktop e mobile)",
+  "SEO básico por página (title, description, Open Graph)",
+];
+
+const techStack = [
+  {
+    name: "Astro",
+    role: "Site estático com arquitetura de ilhas — HTML rápido e JavaScript só onde é necessário.",
+  },
+  {
+    name: "Svelte",
+    role: "Componentes interativos pontuais (ilhas) integrados ao Astro.",
+  },
+  {
+    name: "TypeScript",
+    role: "Tipagem nos dados (navegação, soluções) e no schema do conteúdo.",
+  },
+  {
+    name: "Design system (CSS)",
+    role: "Tokens de tema claro/escuro, tipografia e componentes próprios — sem framework de UI.",
+  },
+  {
+    name: "Content Collections (Markdown)",
+    role: "Blog em Markdown com schema validado e geração automática do sumário.",
+  },
+  {
+    name: "Cloudflare Pages",
+    role: "Deploy contínuo via Git: cada push na branch publica o site automaticamente.",
+  },
+];
+
+const projectJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "VistoPred — Site institucional",
+  url: demoUrl,
+  description:
+    "Site institucional da VistoPred, empresa do app de inspeção, manutenção e gestão predial. Desenvolvido por Kauã Araujo de Souza.",
+  creator: {
+    "@type": "Person",
+    name: "Kauã Araujo de Souza",
+    url: `${siteUrl}/sobre`,
+  },
+  inLanguage: "pt-BR",
+};
+---
+
+<Base
+  title="VistoPred — Site institucional (Astro) | Kauã Araujo"
+  description="Case do site institucional da VistoPred, desenvolvido por Kauã Araujo com Astro, Svelte e Cloudflare Pages. Arquitetura, decisões e funcionalidades. Projeto em andamento."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="article" />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(projectJsonLd)}
+    />
+  </Fragment>
+
+  <Header />
+
+  <main id="main">
+    <section class="section">
+      <div class="site-container">
+        <a
+          href="/projetos"
+          class="reveal mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-fg-dim transition-colors hover:text-fg"
+        >
+          <Icon name="arrow-right" size={12} class="-scale-x-100" />
+          Voltar pra projetos
+        </a>
+
+        <header class="reveal flex flex-col gap-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge">
+              <span
+                class="size-1.5 rounded-full bg-amber-400 shadow-[0_0_0_3px_rgba(251,191,36,0.18)]"
+                aria-hidden="true"
+              ></span>
+              Em andamento
+            </span>
+            <span class="badge">2026</span>
+            <span class="badge">Site institucional</span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="eyebrow">Projeto / Cliente</span>
+            <h1 class="title-xl">VistoPred</h1>
+            <p class="font-mono text-sm text-accent md:text-base">
+              Site institucional · Front-end · Web
+            </p>
+          </div>
+
+          <p class="subtitle">
+            Site institucional da VistoPred — empresa por trás do app de
+            inspeção, manutenção e gestão predial. Meu trabalho foi o
+            <strong class="text-fg">site</strong>: apresentar o produto, as
+            soluções, o blog e os materiais. Está <strong class="text-fg"
+              >em andamento</strong
+            >, no ar em vistopred.pages.dev enquanto finalizo os ajustes.
+          </p>
+
+          <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button button-primary justify-center sm:justify-start"
+            >
+              Ver site ao vivo
+              <Icon name="arrow-up-right" size={15} />
+            </a>
+            <span
+              class="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-2 px-4 py-2 font-mono text-xs uppercase tracking-[0.14em] text-fg-dim sm:justify-start"
+            >
+              <Icon name="github" size={14} />
+              Código privado
+            </span>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    {/* VISUALIZAÇÃO AO VIVO — iframe do site dentro de uma moldura de browser */}
+    <section class="section pt-0">
+      <div class="site-container">
+        <div class="reveal relative">
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-accent/[0.06] blur-3xl"
+          >
+          </div>
+
+          <figure
+            class="relative overflow-hidden rounded-xl border border-border-strong bg-bg-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
+          >
+            <div
+              class="flex items-center gap-1.5 border-b border-border bg-bg px-3.5 py-2.5"
+            >
+              <span class="size-2.5 rounded-full bg-[#ff5f57]"></span>
+              <span class="size-2.5 rounded-full bg-[#febc2e]"></span>
+              <span class="size-2.5 rounded-full bg-[#28c840]"></span>
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ml-3 inline-flex items-center gap-1.5 truncate font-mono text-[0.7rem] text-fg-muted transition-colors hover:text-fg"
+              >
+                vistopred.pages.dev
+                <Icon name="arrow-up-right" size={11} />
+              </a>
+            </div>
+
+            <iframe
+              src={demoUrl}
+              title="Pré-visualização ao vivo do site VistoPred"
+              loading="lazy"
+              class="block aspect-[16/10] w-full bg-white"
+            ></iframe>
+          </figure>
+
+          <p class="mt-3 text-center font-mono text-[0.7rem] text-fg-dim">
+            Pré-visualização ao vivo · projeto em andamento
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ESCOPO / MEU PAPEL */}
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">O projeto</span>
+          <h2 class="title">O que eu fiz.</h2>
+        </header>
+
+        <div class="reveal prose-wide flex flex-col gap-5" style="transition-delay: 80ms">
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            A VistoPred é uma empresa de tecnologia para vistoria, manutenção e
+            gestão predial — o produto dela é um <strong class="text-fg"
+              >aplicativo</strong
+            >. Meu trabalho aqui foi construir o
+            <strong class="text-fg">site institucional</strong> da empresa: a
+            vitrine que apresenta o produto, explica as soluções, publica
+            conteúdo no blog e disponibiliza materiais para download.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            Em resumo: <strong class="text-fg">não desenvolvi o app</strong> (ele
+            é o produto da empresa) — fui responsável pelo site, do layout e do
+            design system à publicação e ao deploy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ARQUITETURA */}
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">Arquitetura</span>
+          <h2 class="title">Como foi montado.</h2>
+        </header>
+
+        <div class="reveal prose-wide flex flex-col gap-5" style="transition-delay: 80ms">
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O site é feito em <strong class="text-fg">Astro</strong> com
+            <strong class="text-fg">arquitetura de ilhas</strong>: tudo é gerado
+            como HTML estático (rápido e bom pra SEO), e o JavaScript só é
+            enviado nos pontos realmente interativos — implementados como
+            <strong class="text-fg">ilhas Svelte</strong> e pequenos scripts
+            (tema claro/escuro, menu, modal de demonstração, sumário do blog).
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O visual não usa framework de UI: montei um
+            <strong class="text-fg">design system próprio em CSS</strong>, com
+            tokens de cor, tipografia e sombras que respondem ao tema
+            claro/escuro. O conteúdo do blog vive em
+            <strong class="text-fg">Markdown</strong> através das Content
+            Collections do Astro, com schema tipado e sumário gerado
+            automaticamente a partir dos títulos.
+          </p>
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            A logo 3D é renderizada com <strong class="text-fg">model-viewer</strong>
+            (arquivo <code>.glb</code>). O deploy é no
+            <strong class="text-fg">Cloudflare Pages</strong> com integração Git:
+            cada push na branch dispara o build e publica o site
+            automaticamente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* TECNOLOGIAS */}
+    <section class="section pt-0">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">Stack</span>
+          <h2 class="title">Tecnologias utilizadas.</h2>
+        </header>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            techStack.map((tech, i) => (
+              <article
+                class="card card-accent-hover reveal"
+                style={`transition-delay: ${i * 60}ms`}
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-base font-semibold text-fg">{tech.name}</h3>
+                  <span class="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-dim">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted">{tech.role}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* FUNCIONALIDADES */}
+    <section class="section pt-0">
+      <div class="site-container">
+        <header class="reveal section-header">
+          <span class="eyebrow">No site</span>
+          <h2 class="title">O que tem no site.</h2>
+        </header>
+
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {
+            features.map((feature, i) => (
+              <li
+                class="card card-hover reveal flex-row items-start gap-3"
+                style={`transition-delay: ${i * 40}ms`}
+              >
+                <Icon name="check" size={16} class="mt-1 shrink-0 text-accent" />
+                <span class="text-sm leading-relaxed text-fg md:text-[0.95rem]">
+                  {feature}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    {/* STATUS */}
+    <section class="section pt-0">
+      <div class="site-container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-12">
+        <header class="reveal section-header lg:sticky lg:top-24">
+          <span class="eyebrow">Status</span>
+          <h2 class="title">Onde está agora.</h2>
+        </header>
+
+        <div class="reveal prose-wide flex flex-col gap-5" style="transition-delay: 80ms">
+          <p class="text-base leading-relaxed text-muted md:text-[1.0625rem]">
+            O site já está <strong class="text-fg">no ar</strong> em
+            vistopred.pages.dev e o fluxo principal funciona — mas o projeto
+            está <strong class="text-fg">em andamento</strong>: ainda estou
+            refinando layout, conteúdo e a página de posts do blog antes de
+            ligar o domínio final.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section class="section">
+      <div class="site-container">
+        <div
+          class="reveal relative isolate overflow-hidden rounded-2xl border border-border-strong bg-surface p-6 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            class="accent-glow"
+            style="top: -160px; right: -140px; width: 340px; height: 340px;"
+          >
+          </div>
+
+          <div class="relative flex flex-col gap-5 md:max-w-xl">
+            <span class="eyebrow">Mais projetos</span>
+            <h2 class="title">Quer ver o resto do trabalho?</h2>
+            <p class="subtitle">
+              Outros projetos, estudos e protótipos estão na matriz completa. E
+              se você precisa de um site assim, é só me chamar.
+            </p>
+
+            <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <a
+                href="/projetos"
+                class="button button-primary justify-center sm:justify-start"
+              >
+                Ver outros projetos
+                <Icon name="arrow-right" size={15} />
+              </a>
+              <a
+                href="/#contato"
+                class="button button-secondary justify-center sm:justify-start"
+              >
+                Falar comigo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

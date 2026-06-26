@@ -350,6 +350,18 @@ function statusColor(status: string) {
                         Privado
                       </span>
                     )}
+                    {project.caseUrl && (
+                      <>
+                        <span class="text-fg-dim" aria-hidden="true">·</span>
+                        <a
+                          href={project.caseUrl}
+                          class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent"
+                        >
+                          Detalhes
+                          <Icon name="arrow-right" size={13} />
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
               </article>

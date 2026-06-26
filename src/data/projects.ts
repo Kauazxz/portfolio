@@ -41,10 +41,32 @@ export const projects: Project[] = [
     status: "live",
     featured: true,
   },
+  {
+    id: "vistopred",
+    title: "VistoPred",
+    role: "Site institucional · Front-end · Web",
+    year: "2026",
+    description:
+      "Site institucional da VistoPred — empresa do app de inspeção, manutenção e gestão predial. Fui responsável pelo desenvolvimento do site (o aplicativo é o produto da empresa): apresentação do produto, soluções, blog, downloads e contato.",
+    highlights: [
+      "Site multipágina (home, sobre, soluções, blog, downloads, tutoriais, contato)",
+      "Design system próprio com tema claro/escuro",
+      "Logo 3D interativa com model-viewer",
+      "Blog em Markdown com sumário e busca",
+      "Deploy contínuo no Cloudflare Pages",
+    ],
+    tags: ["Astro", "Svelte", "TypeScript", "Design system (CSS)", "Cloudflare Pages"],
+    demoUrl: "https://vistopred.pages.dev",
+    codeUrl: null,
+    caseUrl: "/projetos/vistopred",
+    previewImage: null,
+    status: "in-progress",
+    featured: false,
+  },
 ];
 
 export const statusLabel: Record<ProjectStatus, string> = {
   live: "Ao vivo",
-  "in-progress": "Em desenvolvimento",
+  "in-progress": "Em andamento",
   concept: "Estudo de caso",
 };
