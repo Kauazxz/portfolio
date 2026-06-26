@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ContactModal from "../components/ContactModal.astro";
 
 interface Props {
   title?: string;
@@ -45,6 +46,8 @@ const {
     </a>
 
     <slot />
+
+    <ContactModal />
 
     <script>
       // Reveal sutil das seções ao entrar no viewport — sem libs externas.

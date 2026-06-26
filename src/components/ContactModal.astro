@@ -1,0 +1,256 @@
+---
+/* =====================================================================
+   ContactModal — modal global de contato.
+   Incluída uma vez no Base.astro. Abre ao clicar em qualquer gatilho de
+   contato: [data-contact-open], links para #contato, ou o mailto do dono.
+   Envia direto pro e-mail via FormSubmit (sem backend).
+   ===================================================================== */
+---
+
+<div class="contact-modal" id="contactModal" aria-hidden="true">
+  <div class="contact-modal__overlay" data-contact-close aria-hidden="true"></div>
+
+  <div
+    class="contact-modal__dialog relative z-[1] w-full max-w-[480px] rounded-2xl border border-border-strong bg-surface p-6 shadow-2xl md:p-7"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="contactModalTitle"
+  >
+    <button
+      type="button"
+      class="contact-modal__close"
+      data-contact-close
+      aria-label="Fechar"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+      </svg>
+    </button>
+
+    <span class="eyebrow">Contato</span>
+    <h2 id="contactModalTitle" class="title mt-2">Vamos conversar</h2>
+    <p class="subtitle mt-2">
+      Preencha abaixo e a mensagem cai direto no meu e-mail. Respondo em até 24h.
+    </p>
+
+    <form class="contact-form" data-contact-form novalidate>
+      <div>
+        <label class="contact-form__label" for="cf-name">Nome</label>
+        <input id="cf-name" name="name" type="text" required autocomplete="name"
+          class="contact-form__input" placeholder="Seu nome" />
+      </div>
+      <div>
+        <label class="contact-form__label" for="cf-email">E-mail</label>
+        <input id="cf-email" name="email" type="email" required autocomplete="email"
+          class="contact-form__input" placeholder="seu@email.com" />
+      </div>
+      <div>
+        <label class="contact-form__label" for="cf-message">Mensagem</label>
+        <textarea id="cf-message" name="message" rows="4" required
+          class="contact-form__input resize-y" placeholder="Conta um pouco sobre a ideia ou o projeto..."></textarea>
+      </div>
+
+      {/* honeypot anti-spam — fica invisível; bots preenchem, humanos não */}
+      <input type="text" name="_honey" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <button type="submit" class="button button-primary mt-1 w-full justify-center" data-contact-submit>
+        Enviar mensagem
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <p class="contact-form__status" data-contact-status aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Mecânica da modal (valores literais — sem depender de tokens) */
+  .contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .contact-modal[data-open] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .contact-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 7, 0.72);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  .contact-modal__dialog {
+    transform: translateY(14px) scale(0.985);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+  .contact-modal[data-open] .contact-modal__dialog {
+    transform: translateY(0) scale(1);
+  }
+  .contact-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid var(--cm-border, rgba(255, 255, 255, 0.12));
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--cm-muted, #a1a1aa);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .contact-modal__close:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .contact-form__label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .contact-form__honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .contact-form__status {
+    margin: 2px 0 0;
+    font-size: 0.85rem;
+    min-height: 1.1em;
+  }
+  .contact-form__status[data-state="ok"] { color: #34d399; }
+  .contact-form__status[data-state="err"] { color: #f87171; }
+  .contact-form__status[data-state="info"] { color: #7dd3fc; }
+</style>
+
+<style is:global>
+  /* Inputs estilizados com os tokens reais do site (is:global p/ pegar as vars) */
+  .contact-form__input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--color-border, #27272a);
+    background: var(--color-bg-2, #0c0c0e);
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--color-fg, #fafafa);
+    transition: border-color 0.2s ease;
+  }
+  .contact-form__input::placeholder { color: var(--color-fg-dim, #71717a); }
+  .contact-form__input:focus {
+    outline: none;
+    border-color: var(--color-accent, #f43f5e);
+  }
+  .contact-form__label { color: var(--color-fg-dim, #71717a); }
+  .contact-modal__close { color: var(--color-fg-dim, #a1a1aa); }
+</style>
+
+<script>
+  const modal = document.getElementById("contactModal");
+  if (modal) {
+    const form = modal.querySelector<HTMLFormElement>("[data-contact-form]");
+    const statusEl = modal.querySelector<HTMLElement>("[data-contact-status]");
+    const submitBtn = modal.querySelector<HTMLButtonElement>("[data-contact-submit]");
+    const firstInput = modal.querySelector<HTMLInputElement>("#cf-name");
+    let lastFocused: HTMLElement | null = null;
+
+    function openModal() {
+      lastFocused = document.activeElement as HTMLElement;
+      modal!.setAttribute("data-open", "");
+      modal!.setAttribute("aria-hidden", "false");
+      document.documentElement.style.overflow = "hidden";
+      window.setTimeout(() => firstInput?.focus(), 70);
+    }
+    function closeModal() {
+      modal!.removeAttribute("data-open");
+      modal!.setAttribute("aria-hidden", "true");
+      document.documentElement.style.overflow = "";
+      lastFocused?.focus?.();
+    }
+
+    // Abre em qualquer gatilho de contato (sem precisar editar os botões)
+    document.addEventListener("click", (e) => {
+      const t = e.target as HTMLElement;
+      const trigger = t.closest(
+        '[data-contact-open], a[href*="#contato"], a[href="mailto:araujokaua8@gmail.com"]'
+      );
+      if (!trigger) return;
+      e.preventDefault();
+      openModal();
+    });
+
+    modal.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("[data-contact-close]")) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.hasAttribute("data-open")) closeModal();
+    });
+
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const fd = new FormData(form);
+      if (fd.get("_honey")) return; // bot
+      if (statusEl) { statusEl.textContent = ""; statusEl.removeAttribute("data-state"); }
+
+      const original = submitBtn ? submitBtn.innerHTML : "";
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Enviando..."; }
+
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/araujokaua8@gmail.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            name: fd.get("name"),
+            email: fd.get("email"),
+            message: fd.get("message"),
+            _subject: "Novo contato pelo portfolio",
+            _template: "table",
+            _captcha: "false",
+          }),
+        });
+        const data = await res.json().catch(() => ({} as any));
+        if (res.ok && (data.success === "true" || data.success === true)) {
+          if (statusEl) { statusEl.textContent = "Mensagem enviada! Retorno em até 24h. 🎉"; statusEl.setAttribute("data-state", "ok"); }
+          form.reset();
+        } else if (/activation/i.test(data?.message || "")) {
+          if (statusEl) { statusEl.textContent = "Quase lá! O envio precisa de uma ativação única (um e-mail de confirmação foi enviado ao dono do site). Depois disso, sua mensagem chega normalmente."; statusEl.setAttribute("data-state", "info"); }
+        } else {
+          if (statusEl) { statusEl.textContent = data?.message || "Não consegui enviar agora. Tente de novo ou me chame em araujokaua8@gmail.com."; statusEl.setAttribute("data-state", "err"); }
+        }
+      } catch (_) {
+        if (statusEl) { statusEl.textContent = "Erro de conexão. Tente de novo ou me chame em araujokaua8@gmail.com."; statusEl.setAttribute("data-state", "err"); }
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = original; }
+      }
+    });
+  }
+</script>
