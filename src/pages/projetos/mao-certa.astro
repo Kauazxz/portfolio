@@ -176,16 +176,17 @@ const projectJsonLd = {
               </a>
             </div>
 
-            <img
-              src="/projects/mao-certa/hero.png"
-              alt="Tela inicial do MãoCerta no desktop, mostrando opção de login e seleção entre cliente e profissional"
-              class="block w-full"
-              width="1900"
-              height="920"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
+            <picture>
+              <source media="(max-width: 640px)" srcset="/projects/mao-certa/mobile.png" />
+              <img
+                src="/projects/mao-certa/hero.png"
+                alt="Tela inicial do MãoCerta no desktop, com login e seleção entre cliente e profissional"
+                class="block w-full"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
           </figure>
 
           <figure
@@ -195,9 +196,9 @@ const projectJsonLd = {
               src="/projects/mao-certa/mobile.png"
               alt="Tela inicial do MãoCerta no mobile, layout responsivo"
               class="block w-full"
-              width="482"
-              height="892"
-              loading="eager"
+              width="780"
+              height="1688"
+              loading="lazy"
               decoding="async"
             />
           </figure>

@@ -59,7 +59,7 @@ export const projects: Project[] = [
     demoUrl: "https://vistopred.pages.dev",
     codeUrl: null,
     caseUrl: "/projetos/vistopred",
-    previewImage: null,
+    previewImage: "/projects/vistopred/hero.png",
     status: "in-progress",
     featured: false,
   },
