@@ -39,7 +39,7 @@ export const projects: Project[] = [
     caseUrl: "/projetos/mao-certa",
     previewImage: "/projects/mao-certa/hero.png",
     status: "live",
-    featured: true,
+    featured: false,
   },
   {
     id: "vistopred",

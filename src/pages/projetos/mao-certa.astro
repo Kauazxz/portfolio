@@ -94,8 +94,8 @@ const projectJsonLd = {
           Voltar pra projetos
         </a>
 
-        <header class="reveal flex flex-col gap-5">
-          <div class="flex flex-wrap items-center gap-2">
+        <header class="reveal mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
+          <div class="flex flex-wrap items-center justify-center gap-2">
             <span class="badge">
               <span
                 class="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_3px_rgba(52,211,153,0.18)]"
@@ -107,8 +107,8 @@ const projectJsonLd = {
             <span class="badge">Web app</span>
           </div>
 
-          <div class="flex flex-col gap-3">
-            <span class="eyebrow">Projeto / Em destaque</span>
+          <div class="flex flex-col items-center gap-3">
+            <span class="eyebrow">Projeto</span>
             <h1 class="title-xl">MãoCerta</h1>
             <p
               class="font-mono text-sm text-accent md:text-base"
@@ -122,7 +122,7 @@ const projectJsonLd = {
             profissionais disponíveis na região.
           </p>
 
-          <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <a
               href={demoUrl}
               target="_blank"
@@ -149,7 +149,7 @@ const projectJsonLd = {
 
     <section class="section pt-0">
       <div class="site-container">
-        <div class="reveal relative">
+        <div class="reveal relative mx-auto max-w-3xl">
           <div
             aria-hidden="true"
             class="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-accent/[0.06] blur-3xl"
@@ -187,20 +187,6 @@ const projectJsonLd = {
                 fetchpriority="high"
               />
             </picture>
-          </figure>
-
-          <figure
-            class="absolute bottom-[-8%] right-2 hidden w-[16%] min-w-[100px] max-w-[140px] rotate-2 overflow-hidden rounded-xl border-4 border-bg shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] sm:block md:right-6 lg:bottom-[-12%] lg:right-10 lg:w-[18%]"
-          >
-            <img
-              src="/projects/mao-certa/mobile.png"
-              alt="Tela inicial do MãoCerta no mobile, layout responsivo"
-              class="block w-full"
-              width="780"
-              height="1688"
-              loading="lazy"
-              decoding="async"
-            />
           </figure>
         </div>
       </div>
